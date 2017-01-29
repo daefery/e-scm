@@ -1,0 +1,164 @@
+<ul class="nav nav-list" ng-if="credential.type=='inv'">
+  <li class="">
+		<a href="/main">
+			<i class="menu-icon fa fa-tachometer"></i>
+			<span class="menu-text"> Dashboard </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li class="">
+    <a href="#product">
+      <i class="menu-icon fa fa-shopping-cart"></i>
+      <span class="menu-text"> Product</span>
+    </a>
+
+    <b class="arrow"></b>
+  </li>
+
+  <li class="">
+    <a href="#" class="dropdown-toggle">
+      <i class="menu-icon fa fa-briefcase"></i>
+      <span class="menu-text">
+        Inventory
+      </span>
+
+      <b class="arrow fa fa-angle-down"></b>
+    </a>
+
+    <b class="arrow"></b>
+
+    <ul class="submenu">
+
+      <li class="">
+        <a href="#inventorymanager">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Inventory Manager
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li class="">
+        <a href="#inventorymanager">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Purchase Order
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li class="">
+        <a href="#inventorymanager">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Inventory Report & History
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+    </ul>
+  </li>
+  <li class="">
+    <a href="#" class="dropdown-toggle">
+      <i class="menu-icon fa fa-industry"></i>
+      <span class="menu-text">
+        Supplier
+      </span>
+
+      <b class="arrow fa fa-angle-down"></b>
+    </a>
+
+    <b class="arrow"></b>
+
+    <ul class="submenu">
+
+      <li class="">
+        <a href="#inventorymanager">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Supplier Manager
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li class="">
+        <a href="#inventorymanager">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Transaction
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li class="">
+        <a href="#inventorymanager">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Supplier Report & History
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+    </ul>
+  </li>
+</ul><!-- /.nav-list -->
+<ul class="nav nav-list" ng-if="credential.type=='csr'">
+  <li class="">
+		<a href="/main">
+			<i class="menu-icon fa fa-tachometer"></i>
+			<span class="menu-text"> Dashboard </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li class="">
+		<a href="/main">
+			<i class="menu-icon fa fa-shopping-bag"></i>
+			<span class="menu-text"> Transaction </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+</ul><!-- /.nav-list -->
+<ul class="nav nav-list" ng-if="credential.type=='admin'">
+  <li class="">
+		<a href="/main">
+			<i class="menu-icon fa fa-shopping-bag"></i>
+			<span class="menu-text"> Transaction </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li class="">
+		<a href="/main">
+			<i class="menu-icon fa fa-users"></i>
+			<span class="menu-text"> User </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li class="">
+		<a href="/main">
+			<i class="menu-icon fa fa-industry"></i>
+			<span class="menu-text"> Audit Trail </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li class="">
+    <a href="#product">
+      <i class="menu-icon fa fa-desktop"></i>
+      <span class="menu-text"> Monitoring</span>
+    </a>
+
+    <b class="arrow"></b>
+  </li>
+
+  <li class="">
+    <a href="#product">
+      <i class="menu-icon fa fa-tasks"></i>
+      <span class="menu-text"> Tasks </span>
+    </a>
+
+    <b class="arrow"></b>
+  </li>
+</ul><!-- /.nav-list -->
+
+<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+  <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+</div>
