@@ -31,7 +31,7 @@ app_login.controller('LoginController', function($scope) {
             type:user_type
         }
         localStorage.setItem('user_credential', JSON.stringify(user_credential));
-  			window.location.replace("http://e-scm.localdev.info/main");
+  			window.location.replace("/main");
   		}else{
         $scope.error = valid;
         $scope.msg_text = 'username or password incorect.';

@@ -18,7 +18,7 @@ app.config(function($routeProvider) {
 app.run(function ($rootScope) {
   var retrievedObject = localStorage.getItem('user_credential');
   if(retrievedObject == null){
-    window.location.replace("http://e-scm.localdev.info/");
+    window.location.replace("/");
   }else{
     $rootScope.credential = JSON.parse(retrievedObject);
   }

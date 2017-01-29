@@ -3,7 +3,7 @@ app.controller('LogoutController', function($scope){
 		bootbox.confirm("Are you sure?", function(result) {
 			if(result) {
 				localStorage.removeItem("user_credential");
-        window.location.replace("http://e-scm.localdev.info");
+        window.location.replace("/");
 			}
 		});
   }
