@@ -5,17 +5,22 @@ app.config(function($routeProvider) {
   $routeProvider
   .when("/", {
       templateUrl:'../views/contents/landingpage.html',
-      controller:'LandingPageController'
-    }).when("/inventory", {
-        templateUrl:'../views/contents/inventory.html',
-        controller:'InventoryController'
+      controller:'LandingPageController',
+      title:'Dashboard',
+      url:'/main'
     }).when("/product", {
         templateUrl:'../views/contents/product.html',
-        controller:'ProductController'
+        controller:'ProductController',
+        title:'Product',
+        url:'/product'
     });
 });
 
 app.run(function ($rootScope) {
+  $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+      $rootScope.title = current.$$route.title;
+      $rootScope.url = current.$$route.url;
+  });
   var retrievedObject = localStorage.getItem('user_credential');
   if(retrievedObject == null){
     window.location.replace("/");
