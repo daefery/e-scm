@@ -1,0 +1,29 @@
+{
+  "transaction_detail": [
+    {
+      "transaction_detail_id": 1,
+      "product_id": 1,
+      "quantity": 10
+    },
+    {
+      "transaction_detail_id": 2,
+      "product_id": 2,
+      "quantity": 10
+    },
+    {
+      "transaction_detail_id": 3,
+      "product_id": 3,
+      "quantity": 20
+    },
+    {
+      "transaction_detail_id": 4,
+      "product_id": 4,
+      "quantity": 8
+    },
+    {
+      "transaction_detail_id": 5,
+      "product_id": 5,
+      "quantity": 10
+    }
+  ]
+}

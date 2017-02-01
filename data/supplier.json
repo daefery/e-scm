@@ -1,0 +1,39 @@
+{
+  "supplier": [
+    {
+      "supplier_id": 1,
+      "name": "Bagus",
+      "description": "Supplier beras",
+      "address": "Jl. Encep Kartawiria No. 45, Cimahi",
+      "phone": "+62812344324"
+    },
+    {
+      "supplier_id": 2,
+      "name": "Asep",
+      "description": "Supplier alat tulis",
+      "address": "Jl. Astana anyar No. 144, Bandung",
+      "phone": "+628574432423"
+    },
+    {
+      "supplier_id": 3,
+      "name": "Hendra",
+      "description": "Supplier alat elektronik",
+      "address": "Jl. Raya Cikalong Wetan No. 14, Padalarang",
+      "phone": "+6287899344123"
+    },
+    {
+      "supplier_id": 4,
+      "name": "Gufron",
+      "description": "Supplier obat-obatan",
+      "address": "Jl. A. Yani No. 128A, Bandung",
+      "phone": "+62989732122"
+    },
+    {
+      "supplier_id": 5,
+      "name": "Nanang",
+      "description": "Supplier rokok",
+      "address": "Jl. H. Gofur No. 78, Cimahi",
+      "phone": "+6281834234445"
+    }
+  ]
+}
