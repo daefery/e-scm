@@ -1,0 +1,74 @@
+{
+  "product": [
+    {
+      "product_id": 1,
+      "supplier_id": 1,
+      "inventory_id": 1,
+      "prooduct_name": "Beras pandan wangi 10kg",
+      "product_description": "",
+      "product_price": 115000,
+      "product_stock": 12,
+      "product_cost": 3000,
+      "discon_status": false,
+      "discon_qty": 0,
+      "created_date": "10/10/2016",
+      "lastupdate_date": "10/10/2016"
+    },
+    {
+      "product_id": 2,
+      "supplier_id": 2,
+      "inventory_id": 2,
+      "prooduct_name": "Ballpoint Zebra 1 lusin",
+      "product_description": "",
+      "product_price": 60000,
+      "product_stock": 4,
+      "product_cost": 1000,
+      "discon_status": true,
+      "discon_qty": 2,
+      "created_date": "14/10/2016",
+      "lastupdate_date": "15/12/2016"
+    },
+    {
+      "product_id": 3,
+      "supplier_id": 3,
+      "inventory_id": 3,
+      "prooduct_name": "Baterai Duracell isi 8",
+      "product_description": "",
+      "product_price": 32000,
+      "product_stock": 10,
+      "product_cost": 1000,
+      "discon_status": false,
+      "discon_qty": 0,
+      "created_date": "13/04/2016",
+      "lastupdate_date": "10/07/2016"
+    },
+    {
+      "product_id": 4,
+      "supplier_id": 4,
+      "inventory_id": 4,
+      "prooduct_name": "Bodrexin botol 200ml",
+      "product_description": "",
+      "product_price": 28000,
+      "product_stock": 0,
+      "product_cost": 1500,
+      "discon_status": false,
+      "discon_qty": 0,
+      "created_date": "04/05/2016",
+      "lastupdate_date": "04/05/2016"
+    },
+    {
+      "product_id": 5,
+      "supplier_id": 5,
+      "inventory_id": 5,
+      "prooduct_name": "Djarum coklat 12 batang",
+      "product_description": "",
+      "product_price": 18000,
+      "product_stock": 20,
+      "product_cost": 500,
+      "discon_status": true,
+      "discon_qty": 5,
+      "created_date": "12/06/2016",
+      "lastupdate_date": "19/10/2016"
+    }
+  ]
+}
