@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('scm', ['ngRoute']);
+var app = angular.module('scm', ['ngRoute', 'ui.bootstrap']);
 
 app.config(function($routeProvider) {
   $routeProvider
