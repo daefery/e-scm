@@ -13,12 +13,13 @@
 							<div class="row">
 								<div class="col-xs-6">
 									<select class="form-control" ng-model="pf.supplier" id="form-field-select-3" placeholder="Choose a Supplier...">
-										<option>Choose a Supplier...</option>
+										<option value="" disabled selected>Select Supplier</option>
 										<option value="AL">Alabama</option>
 									</select>
 								</div>
 								<div class="col-xs-6">
 									<input type="text" id="form-field-1-1" ng-model="pf.name" placeholder="Name" class="form-control" />
+									<input type="text" ng-show="test" id="form-field-1-1" ng-model="pf.type" placeholder="Name" class="form-control" />
 								</div>
 							</div>
 							<div class="space-4"></div>
@@ -29,10 +30,13 @@
 							</div>
 							<div class="space-4"></div>
 							<div class="row">
-								<div class="col-xs-6">
+								<div class="col-xs-4">
 									<input type="number" id="form-field-1-1" ng-model="pf.price" placeholder="Price" class="form-control" />
 								</div>
-								<div class="col-xs-6">
+								<div class="col-xs-4">
+									<input type="number" id="form-field-1-1" ng-model="pf.stock" placeholder="Stock" class="form-control" />
+								</div>
+								<div class="col-xs-4">
 									<input type="number" id="form-field-1-1" ng-model="pf.cost" placeholder="Cost" class="form-control" />
 								</div>
 							</div>
@@ -41,24 +45,28 @@
 								<div class="col-xs-6">
 									<div class="checkbox">
 										<label>
-											<input name="form-field-checkbox" type="checkbox" ng-model="pf.isDiscount" class="ace input-lg" />
-																<span class="lbl bigger-120"> discount?</span>
+											<input name="form-field-checkbox" type="checkbox" ng-model="pf.discount_status" class="ace input-lg" />
+											<span class="lbl bigger-120"> discount?</span>
 										</label>
 									</div>
 								</div>
-								<div class="col-xs-6" ng-show="pf.isDiscount">
-									<input type="number" id="form-field-1-1" ng-model="pf.discountQty" placeholder="Discount Qty" class="form-control" />
+								<div class="col-xs-6" ng-show="pf.discount_status">
+									<input type="number" id="form-field-1-1" ng-model="pf.discount_qty" placeholder="Discount Qty" class="form-control" />
 								</div>
 							</div>
 						</fieldset>
 
 						<div class="form-actions center">
-							<button type="button" class="btn btn-sm btn-danger" ng-click="actionProduct('cancel')">
+							<button type="button" class="btn btn-sm btn-danger" ng-click="actionProduct('cancel', null)">
 								<i class="ace-icon fa fa-arrow-left icon-on-right"></i>
 								Cancel
 							</button>
-							<button type="button" class="btn btn-sm btn-success" ng-click="saveProduct('create', pf)">
+							<button type="button" ng-show="pf.type != 'edit'" class="btn btn-sm btn-success" ng-click="saveProduct('create', pf)">
 								Create
+								<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+							</button>
+							<button type="button" ng-show="pf.type == 'edit'" class="btn btn-sm btn-success" ng-click="saveProduct('edit', pf)">
+								Update
 								<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
 							</button>
 						</div>
@@ -80,33 +88,26 @@
 		</div>
 		<div class="pull-right tableTools-container">
 			<div class="dt-buttons btn-overlap btn-group">
-				<button class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" ng-click="actionProduct('create')" title="create product" data-rel="tooltip">
+				<button class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" ng-click="actionProduct('create', null)" title="create product" data-rel="tooltip">
 					<span><i class="fa fa-file bigger-110 green"></i>
 					</span>
 				</button>
-				<a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-bold" ng-click="actionProduct('edit')" title="edit product" data-rel="tooltip">
-					<span>
-						<i class="fa fa-pencil bigger-110 blue"></i>
-						<span class="hidden">Copy to clipboard</span>
-					</span>
-				</a>
-				<a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-bold" ng-click="actionProduct('delete')" title="delete product" data-rel="tooltip">
+				<button class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-bold" ng-click="actionProduct('delete', null)" title="delete product" data-rel="tooltip">
 					<span>
 						<i class="fa fa-trash bigger-110 red"></i>
-						<span class="hidden">Export to CSV</span>
 					</span>
-				</a>
-				</div>
+				</button>
+			</div>
 		</div>
 		<table id="simple-table" class="table  table-bordered table-hover">
 			<thead>
 				<tr>
-					<th class="center">
+					<!-- <th class="center">
 						<label class="pos-rel">
 							<input type="checkbox" class="ace" />
 							<span class="lbl"></span>
 						</label>
-					</th>
+					</th> -->
 					<th>Product Id</th>
 					<th>Name</th>
 					<th>Description</th>
@@ -119,26 +120,64 @@
 						<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
 						Create Date
 					</th>
+					<th></th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="(key, value) in filterData = (products | custom:filterText) | limitTo:10:10*(page-1)">
-					<td class="center">
+				<tr ng-repeat="(key, value) in filterData = (products | filter:{name:filterText}) | limitTo:10:10*(page-1)">
+					<!-- <td class="center">
 						<label class="pos-rel">
 							<input type="checkbox" class="ace" />
 							<span class="lbl"></span>
 						</label>
-					</td>
+					</td> -->
 					<td>{{value.product_id}}</td>
 					<td>{{value.name}}</td>
 					<td>{{value.description}}</td>
 					<td class="center">${{value.price}}</td>
 					<td class="center">{{value.stock}}</td>
 					<td class="center">${{value.cost}}</td>
-					<td>{{value.discon_status}}</td>
-					<td class="center">{{value.discon_qty}}</td>
+					<td>{{value.discount_status}}</td>
+					<td class="center">{{value.discount_qty}}</td>
 					<td>{{value.created_date}}</td>
+					<td>
+						<div class="hidden-sm hidden-xs action-buttons">
+							<a class="blue" href="" ng-click="actionProduct('edit', value)">
+								<i class="ace-icon fa fa-pencil bigger-130"></i>
+							</a>
+
+							<a class="red" href="" ng-click="saveProduct('delete', value)">
+								<i class="ace-icon fa fa-trash-o bigger-130"></i>
+							</a>
+						</div>
+
+						<div class="hidden-md hidden-lg">
+							<div class="inline pos-rel">
+								<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+									<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+								</button>
+
+								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+									<li>
+										<a href="" class="tooltip-info" data-rel="tooltip" title="Edit" ng-click="actionProduct('edit', value)">
+											<span class="blue">
+												<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+											</span>
+										</a>
+									</li>
+
+									<li>
+										<a href="" class="tooltip-error" data-rel="tooltip" title="Delete" ng-click="saveProduct('delete', value)">
+											<span class="red">
+												<i class="ace-icon fa fa-trash-o bigger-120"></i>
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -174,24 +213,24 @@
 	});
 
 	if(!ace.vars['touch']) {
-					$('.chosen-select').chosen({allow_single_deselect:true});
-					//resize the chosen on window resize
+		$('.chosen-select').chosen({allow_single_deselect:true});
+		//resize the chosen on window resize
 
-					$(window)
-					.off('resize.chosen')
-					.on('resize.chosen', function() {
-						$('.chosen-select').each(function() {
-							 var $this = $(this);
-							 $this.next().css({'width': $this.parent().width()});
-						})
-					}).trigger('resize.chosen');
-					//resize chosen on sidebar collapse/expand
-					$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
-						if(event_name != 'sidebar_collapsed') return;
-						$('.chosen-select').each(function() {
-							 var $this = $(this);
-							 $this.next().css({'width': $this.parent().width()});
-						})
-					});
-				}
+		$(window)
+		.off('resize.chosen')
+		.on('resize.chosen', function() {
+			$('.chosen-select').each(function() {
+				 var $this = $(this);
+				 $this.next().css({'width': $this.parent().width()});
+			})
+		}).trigger('resize.chosen');
+		//resize chosen on sidebar collapse/expand
+		$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+			if(event_name != 'sidebar_collapsed') return;
+			$('.chosen-select').each(function() {
+				 var $this = $(this);
+				 $this.next().css({'width': $this.parent().width()});
+			})
+		});
+	}
 </script>

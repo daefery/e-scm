@@ -1,21 +1,5 @@
-app.filter('custom', function() {
-  return function(input, search) {
-
-    if (!input) return input;
-    if (!search) return input;
-    var expected = ('' + search).toLowerCase();
-    var result = {};
-    angular.forEach(input, function(value, key) {
-      var actual = ('' + value).toLowerCase();
-      if (actual.indexOf(expected) !== -1) {
-        result[key] = value;
-      }
-    });
-    return result;
-  }
-});
 app.controller('ProductController', function($scope, $http) {
-  $scope.pf = {};
+  $scope.pf = undefined;
   $scope.products = {};
   $scope.isForm = false;
   $http.get('../../data/product.json').success(function(result){
@@ -26,97 +10,90 @@ app.controller('ProductController', function($scope, $http) {
 
 	$scope.pageChanged = function() {
 	  var startPos = ($scope.page - 1) * 10;
-	  //$scope.displayItems = $scope.totalItems.slice(startPos, startPos + 3);
 	  console.log($scope.page);
 	};
-  $scope.actionProduct = function(type){
+
+  $scope.actionProduct = function(type, data){
     switch (type) {
       case 'create':
           $scope.isForm = true;
+          $scope.pf = undefined;
         break;
       case 'edit':
           $scope.isForm = true;
+          $scope.pf = data;
+          $scope.pf.type = 'edit';
+        break;
       case 'cancel':
           $scope.isForm = false;
-          $scope.pf = {};
+          $scope.pf = undefined;
         break;
+      case 'delete':
+      bootbox.confirm("Are you sure?", function(result) {
+          if(result) {
+            var pr = angular.copy($scope.products);
+            angular.forEach(pr, function(val, key){
+              console.log(val);
+              var index = $scope.products.indexOf(val)
+              $scope.products.splice(index,1); 
+            });
+              
+            $.gritter.add({
+                title: 'Success Message',
+                text: 'Congratulation, product deleted successfully.',
+                class_name: 'gritter-success gritter-center'
+              });
+            $scope.$apply();  
+          }
+        });
+      break;
     }
   }
 
   $scope.saveProduct = function(type, data){
     switch (type) {
       case 'create':
-        console.log(data);
+        var param = {
+          product_id:6,
+          name:data.name,
+          description:data.description,
+          price:data.price,
+          stock:data.stock,
+          cost:data.cost,
+          discount_status:(data.discount_status!=undefined?data.discount_status:false),
+          discount_qty:(data.discount_qty!=undefined?data.discount_qty:0),
+          created_date:"10/10/2016"
+        }
+        $scope.products.push(param);
+        $.gritter.add({
+          title: 'Success Message',
+          text: 'Congratulation, product created successfully.',
+          class_name: 'gritter-success gritter-center'
+        });
+        $scope.isForm = false;
         break;
-      // default:
-      // console.log(data);
+      case 'edit':
+        $.gritter.add({
+          title: 'Success Message',
+          text: 'Congratulation, product updated successfully.',
+          class_name: 'gritter-success gritter-center'
+        });
+        $scope.isForm = false;
+        break;
+      case 'delete':
+        bootbox.confirm("Are you sure?", function(result) {
+          if(result) {
+              var index = $scope.products.indexOf(data)
+              $scope.products.splice(index,1);   
+              $scope.$apply();  
+              $.gritter.add({
+                title: 'Success Message',
+                text: 'Congratulation, product deleted successfully.',
+                class_name: 'gritter-success gritter-center'
+              });
+            }
+        });
+        break;
     }
   }
-  // $scope.createProduct = function() {
-  //   var form = "<div class=\"row\"><div class=\"col-xs-12\">"+
-  // 		"<div class=\"widget-box\">"+
-  // 			"<div class=\"widget-header\">"+
-  // 				"<h4 class=\"widget-title\">Text Area</h4>"+
-  // 			"</div>"+
-  // 			"<div class=\"widget-body\">"+
-  // 				"<div class=\"widget-main\">"+
-  // 					"<div>"+
-  // 						"<label for=\"form-field-8\">Default</label>"+
-  // 						"<textarea class=\"form-control\" id=\"form-field-8\" placeholder=\"Default Text\"/>"+
-  // 					"</div>"+
-  // 					"<hr />"+
-  // 					"<div>"+
-  // 						"<label for=\"form-field-9\">With Character Limit</label>"+
-  // 						"<textarea class=\"form-control limited\" id=\"form-field-9\" maxlength=\"50\"/>"+
-  // 					"</div>"+
-  // 					"<hr />"+
-  // 					"<div>"+
-  // 						"<label for=\"form-field-11\">Autosize</label>"+
-  // 						"<textarea id=\"form-field-11\" class=\"autosize-transition form-control\"/>"+
-  // 					"</div>"+
-  //           "<div>"+
-  // 						"<label for=\"form-field-11\">Autosize</label>"+
-  // 						"<textarea id=\"form-field-11\" class=\"autosize-transition form-control\"/>"+
-  // 					"</div>"+
-  //           "<div>"+
-  // 						"<label for=\"form-field-11\">Autosize</label>"+
-  // 						"<textarea id=\"form-field-11\" class=\"autosize-transition form-control\"/>"+
-  // 					"</div>"+
-  //           "<div>"+
-  // 						"<label for=\"form-field-11\">Autosize</label>"+
-  // 						"<textarea id=\"form-field-11\" class=\"autosize-transition form-control\"/>"+
-  // 					"</div>"+
-  //           "<div>"+
-  // 						"<label for=\"form-field-11\">Autosize</label>"+
-  // 						"<textarea id=\"form-field-11\" class=\"autosize-transition form-control\"/>"+
-  // 					"</div>"+
-  // 				"</div>"+
-  // 			"</div>"+
-  // 		"</div>"+
-  // 	"</div></div>"+
-  //   "</div>";
-	// 	bootbox.dialog({
-  //     title: 'Create New Product',
-	// 		message: form,
-	// 		buttons:
-	// 		{
-	// 			"success" :
-	// 			 {
-	// 				"label" : "<i class='ace-icon fa fa-check'></i> Success!",
-	// 				"className" : "btn-sm btn-success",
-	// 				"callback": function() {
-	// 					//Example.show("great success");
-	// 				}
-	// 			},
-	// 			"danger" :
-	// 			{
-	// 				"label" : "Danger!",
-	// 				"className" : "btn-sm btn-danger",
-	// 				"callback": function() {
-	// 					//Example.show("uh oh, look out!");
-	// 				}
-	// 			},
-  //     }
-	// 	});
-  // }
 });
