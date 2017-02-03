@@ -10,7 +10,6 @@ app.controller('ProductController', function($scope, $http) {
 
 	$scope.pageChanged = function() {
 	  var startPos = ($scope.page - 1) * 10;
-	  console.log($scope.page);
 	};
 
   $scope.actionProduct = function(type, data){
@@ -54,14 +53,19 @@ app.controller('ProductController', function($scope, $http) {
     switch (type) {
       case 'create':
         var param = {
-          product_id:6,
+          product_id:6234333,
           name:data.name,
+          type:data.type,
           description:data.description,
           price:data.price,
           stock:data.stock,
+          stock_min:data.stock_min,
           cost:data.cost,
           discount_status:(data.discount_status!=undefined?data.discount_status:false),
-          discount_qty:(data.discount_qty!=undefined?data.discount_qty:0),
+          discount_qty_min:(data.discount_qty_min!=undefined?data.discount_qty_min:0),
+          discount_rate:(data.discount_rate!=undefined?data.discount_rate:0),
+          expired_status:(data.expired_status!=undefined?data.expired_status:false),
+          expired_date:(data.expired_date!=undefined?data.expired_date:""),
           created_date:"10/10/2016"
         }
         $scope.products.push(param);
