@@ -1,5 +1,5 @@
 <ul class="nav nav-list" ng-if="credential.type=='inv'">
-  <li class="">
+  <li ng-class="{'active':title=='Dashboard'}">
 		<a href="/main/#/">
 			<i class="menu-icon fa fa-tachometer"></i>
 			<span class="menu-text"> Dashboard </span>
@@ -7,7 +7,7 @@
 
 		<b class="arrow"></b>
 	</li>
-  <li class="">
+  <li ng-class="{'active':title=='Product'}">
     <a href="#product">
       <i class="menu-icon fa fa-shopping-basket"></i>
       <span class="menu-text"> Product</span>
@@ -29,7 +29,7 @@
     <b class="arrow"></b>
 
     <ul class="submenu">
-      <li class="">
+      <li ng-class="{'active':title=='Manage Inventory'}">
         <a href="#manageinventory">
           <i class="menu-icon fa fa-caret-right"></i>
           Manage Inventory

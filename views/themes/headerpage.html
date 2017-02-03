@@ -1,5 +1,12 @@
 <div class="page-header">
-  <h1>
+  <h1 ng-if="parent != undefined">
+    {{parent}}
+    <small>
+  		<i class="ace-icon fa fa-angle-double-right"></i>
+  		{{title}}
+  	</small>
+  </h1>
+  <h1 ng-if="parent == undefined">
     {{title}}
   </h1>
 </div><!-- /.page-header -->

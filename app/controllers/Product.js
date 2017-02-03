@@ -22,7 +22,7 @@ app.controller('ProductController', function($scope, $http) {
       case 'edit':
           $scope.isForm = true;
           $scope.pf = data;
-          $scope.pf.type = 'edit';
+          $scope.pf.act = 'edit';
         break;
       case 'cancel':
           $scope.isForm = false;
@@ -35,15 +35,15 @@ app.controller('ProductController', function($scope, $http) {
             angular.forEach(pr, function(val, key){
               console.log(val);
               var index = $scope.products.indexOf(val)
-              $scope.products.splice(index,1); 
+              $scope.products.splice(index,1);
             });
-              
+
             $.gritter.add({
                 title: 'Success Message',
                 text: 'Congratulation, product deleted successfully.',
                 class_name: 'gritter-success gritter-center'
               });
-            $scope.$apply();  
+            $scope.$apply();
           }
         });
       break;
@@ -84,8 +84,8 @@ app.controller('ProductController', function($scope, $http) {
         bootbox.confirm("Are you sure?", function(result) {
           if(result) {
               var index = $scope.products.indexOf(data)
-              $scope.products.splice(index,1);   
-              $scope.$apply();  
+              $scope.products.splice(index,1);
+              $scope.$apply();
               $.gritter.add({
                 title: 'Success Message',
                 text: 'Congratulation, product deleted successfully.',
