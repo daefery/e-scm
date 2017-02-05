@@ -21,8 +21,8 @@ app.config(function($routeProvider) {
     }).when("/supplier", {
         templateUrl:'../views/contents/supplier.html',
         controller:'SupplierController',
-        title:'Stock Management',
-        parent:'Supplier'
+        title:'Supplier',
+        parent:'Inventory'
     });
 
 });
