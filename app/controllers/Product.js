@@ -1,15 +1,43 @@
-app.controller('ProductController', function($scope, $http) {
+app.controller('ProductController', function($scope, $http, $filter) {
   $scope.pf = undefined;
-  $scope.products = {};
+  $scope.products = [];
+  $scope.supplier = {};
   $scope.isForm = false;
-  $http.get('../../data/product.json').success(function(result){
-    $scope.page = 1;
-    $scope.products = angular.copy(result.product);
-    $scope.displayItems = $scope.products.slice(0, 10);
+  $http.get('../../data/supplier.json').success(function(result_sup){
+    $scope.supplier = angular.copy(result_sup.supplier);
+    $http.get('../../data/product.json').success(function(result){
+      angular.forEach(result.product, function(val, key){
+        var p = $filter('filter')($scope.supplier, {supplier_id:val.supplier_id})[0];
+        var dat = {
+          "product_id": val.product_id,
+          "supplier_name": p.name,
+          "inventory_id": val.inventory_id,
+          "name": val.name,
+          "type":val.type,
+          "description": val.description,
+          "price":val.price,
+          "qty": val.qty,
+          "stock_min": val.stock_min,
+          "cost": val.cost,
+          "discount_status": val.discount_status,
+          "discount_qty_min": val.discount_qty_min,
+          "discount_rate": val.discount_rate,
+          "expired_status": val.expired_status,
+          "expired_date": val.expired_date,
+          "created_date": val.created_date
+        };
+        $scope.products.push(dat);
+      });
+      $scope.page = 1;
+      $scope.displayItems = $scope.products.slice(0, 5);
+
+    });
   });
 
+
+
 	$scope.pageChanged = function() {
-	  var startPos = ($scope.page - 1) * 10;
+	  var startPos = ($scope.page - 1) * 5;
 	};
 
   $scope.actionProduct = function(type, data){
@@ -32,7 +60,6 @@ app.controller('ProductController', function($scope, $http) {
           if(result) {
             var pr = angular.copy($scope.products);
             angular.forEach(pr, function(val, key){
-              console.log(val);
               var index = $scope.products.indexOf(val)
               $scope.products.splice(index,1);
             });
@@ -58,7 +85,7 @@ app.controller('ProductController', function($scope, $http) {
           type:data.type,
           description:data.description,
           price:data.price,
-          stock:data.stock,
+          qty:data.qty,
           stock_min:data.stock_min,
           cost:data.cost,
           discount_status:(data.discount_status!=undefined?data.discount_status:false),

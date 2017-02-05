@@ -34,6 +34,13 @@
       "description": "Supplier rokok",
       "address": "Jl. H. Gofur No. 78, Cimahi",
       "phone": "+6281834234445"
+    },
+    {
+      "supplier_id": 6,
+      "name": "Selamet",
+      "description": "Supplier Mainan",
+      "address": "Jl. H. Gofur No. 78, Cimahi",
+      "phone": "+6281834234445"
     }
   ]
 }

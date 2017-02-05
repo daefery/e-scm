@@ -13,10 +13,10 @@ app.config(function($routeProvider) {
         controller:'ProductController',
         title:'Product',
         parent:undefined
-    }).when("/manageinventory", {
-        templateUrl:'../views/contents/manageinventory.html',
-        controller:'ManageInventoryController',
-        title:'Manage Inventory',
+    }).when("/stockmanagement", {
+        templateUrl:'../views/contents/stockmanagement.html',
+        controller:'StockManagementController',
+        title:'Stock Management',
         parent:'Inventory'
     });;
 });

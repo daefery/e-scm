@@ -2,28 +2,69 @@
   "transaction_detail": [
     {
       "transaction_detail_id": 1,
-      "product_id": 1,
-      "quantity": 10
+      "items":[
+        {"product_id":2971298, "qty":10},
+        {"product_id":7008262, "qty":10},
+        {"product_id":9001128, "qty":10},
+        {"product_id":5123015, "qty":10},
+        {"product_id":9253300, "qty":10},
+        {"product_id":9253100, "qty":10}
+      ]
     },
     {
       "transaction_detail_id": 2,
-      "product_id": 2,
-      "quantity": 10
+      "items":[
+        {"product_id":2971298, "qty":9},
+        {"product_id":7008262, "qty":10},
+        {"product_id":9001128, "qty":10},
+        {"product_id":5123015, "qty":10},
+        {"product_id":9253300, "qty":10},
+        {"product_id":9253100, "qty":10}
+      ]
     },
     {
       "transaction_detail_id": 3,
-      "product_id": 3,
-      "quantity": 20
+      "items":[
+        {"product_id":2971298, "qty":7},
+        {"product_id":7008262, "qty":10},
+        {"product_id":9001128, "qty":10},
+        {"product_id":5123015, "qty":10},
+        {"product_id":9253300, "qty":10},
+        {"product_id":9253100, "qty":10}
+      ]
     },
     {
       "transaction_detail_id": 4,
-      "product_id": 4,
-      "quantity": 8
+      "items":[
+        {"product_id":2971298, "qty":8},
+        {"product_id":7008262, "qty":10},
+        {"product_id":9001128, "qty":10},
+        {"product_id":5123015, "qty":10},
+        {"product_id":9253300, "qty":10},
+        {"product_id":9253100, "qty":10}
+      ]
     },
     {
       "transaction_detail_id": 5,
-      "product_id": 5,
-      "quantity": 10
+      "items":[
+        {"product_id":2971298, "qty":6},
+        {"product_id":7008262, "qty":10},
+        {"product_id":9001128, "qty":10},
+        {"product_id":5123015, "qty":10},
+        {"product_id":9253300, "qty":10},
+        {"product_id":9253100, "qty":10}
+      ]
+    },
+    {
+      "transaction_detail_id": 6,
+      "items":[
+        {"product_id":2971298, "qty":5},
+        {"product_id":7008262, "qty":10},
+        {"product_id":9001128, "qty":10},
+        {"product_id":5123015, "qty":10},
+        {"product_id":9253300, "qty":10},
+        {"product_id":9253100, "qty":10}
+      ]
     }
   ]
 }

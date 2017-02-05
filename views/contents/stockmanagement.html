@@ -1,0 +1,181 @@
+<div class="row">
+	<div class="col-xs-12" ng-hide="isForm">
+		<div class="table-responsive">
+			<div class="pull-left tableTools-container">
+				<div class="dt-buttons btn-overlap btn-group">
+					<span class="input-icon">
+						<input type="text" class="form-control" placeholder="Filter..." ng-model="filterText">
+						<i class="ace-icon fa fa-search blue"></i>
+					</span>
+				</div>
+				<div class="dt-buttons btn-overlap btn-group">
+					<select class="form-control" ng-model="filterType">
+						<option value="" selected disabled>Select Type</option>
+						<option value="">All</option>
+						<option value="Makanan">Makanan</option>
+						<option value="Minuman">Minuman</option>
+						<option value="Elektronik">Elektronik</option>
+						<option value="Mainan">Mainan</option>
+						<option value="Kesehatan">Kesehatan</option>
+						<option value="Lainnya">Lainnya</option>
+					</select>
+				</div>
+        <div class="dt-buttons btn-overlap btn-group">
+					<select class="form-control" ng-model="filterStatus">
+						<option value="" selected disabled>Select Status</option>
+						<option value="">All</option>
+						<option value="Low Stock">Low Stock</option>
+						<option value="In Stock">In Stock</option>
+						<option value="Out of Stock">Out of Stock</option>
+					</select>
+				</div>
+			</div>
+			<div class="pull-right tableTools-container">
+				<div class="dt-buttons btn-overlap btn-group">
+					<button class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" ng-click="printDiv('simple-table')" title="print" data-rel="tooltip">
+						<span><i class="fa fa-print bigger-110 blue"></i>
+						</span>
+					</button>
+				</div>
+			</div>
+			<table id="simple-table" class="table  table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Item Name</th>
+						<th>Description</th>
+						<th>Supplier</th>
+						<th>Type</th>
+						<th>Price</th>
+						<th>Cost</th>
+						<th>Stock Hold</th>
+						<th>Stock In</th>
+						<th>Stock Out</th>
+						<th>Status</th>
+						<th>Last Update</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="x in filterData = (stockmngt | filter:{product_id:filterText, type:filterType, status:filterStatus}) | limitTo:10:10*(page-1)">
+						<td>{{x.product_id}}</td>
+						<td>{{x.item_name}}</td>
+						<td>{{x.description}}</td>
+						<td>{{x.supplier.name}}</td>
+						<td>{{x.type}}</td>
+						<td class="center">{{x.price | currency:"":0}}</td>
+						<td class="center">{{x.cost | currency:"":0}}</td>
+						<td class="center">{{x.stock_hold}}</td>
+						<td class="center">{{x.stock_in}}</td>
+						<td class="center">{{x.stock_out}}</td>
+						<td>
+							<span class="label" ng-class="{'label-danger':x.status=='Out of Stock', 'label-warning':x.status=='Low Stock', 'label-success':x.status=='In Stock'}">{{x.status}}</span>
+						</td>
+						<td>{{x.lastupdate_date}}</td>
+						<td>
+							<div class="hidden-sm hidden-xs action-buttons">
+								<a class="blue" href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.product_id)">
+									<i class="ace-icon fa fa-search-plus bigger-130"></i>
+								</a>
+								<a ng-if="x.status=='Out of Stock' || x.status=='Low Stock'" class="green" href="#purchaseorder" ng-click="actionProduct('edit', x)">
+									<i class="ace-icon fa fa-truck bigger-130"></i>
+								</a>
+							</div>
+
+							<div class="hidden-md hidden-lg">
+								<div class="inline pos-rel">
+									<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+										<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+									</button>
+
+									<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+										<li>
+											<a href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.product_id)" class="tooltip-info" data-rel="tooltip" title="detail">
+												<span class="blue">
+													<i class="ace-icon fa fa-search-plus bigger-120"></i>
+												</span>
+											</a>
+										</li>
+										<li>
+											<a href="#purchaseorder" ng-if="x.status=='Out of Stock' || x.status=='Low Stock'" class="tooltip-info" data-rel="tooltip" title="Edit" ng-click="actionProduct('edit', x)">
+												<span class="green">
+													<i class="ace-icon fa fa-truck bigger-120"></i>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="pull-right">
+				<uib-pagination class="pagination-sm pagination" total-items="stockmngt.length" ng-model="page"
+					ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>
+			</div>
+		</div>
+
+	</div><!-- /.span -->
+	<div class="modal fade modal-table" tabindex="-1">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header no-padding">
+												<div class="table-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+														<span class="white">&times;</span>
+													</button>
+													Results for Detail Product
+												</div>
+											</div>
+
+											<div class="modal-body no-padding">
+												<div class="table-responsive">
+													<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+														<thead>
+															<tr>
+																<th>Transaction</th>
+																<th>Qty</th>
+																<th>Total Price</th>
+																<th>
+																	<i class="ace-icon fa fa-clock-o bigger-110"></i>
+																	Update
+																</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="tr in transaction | orderBy: 'transaction_date':true | limitTo:10:10*(page-1)">
+																<td>{{tr.category}}</td>
+																<td class="center">{{tr.qty}}</td>
+																<td class="center">{{tr.total | currency:"":0}}</td>
+																<td>{{tr.transaction_date}}</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+
+											<div class="modal-footer no-margin-top">
+												<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+													<i class="ace-icon fa fa-times"></i>
+													Close
+												</button>
+												<div class="pull-right no-margin" style="margin-top: -15px !important;margin-bottom: -25px !important;">
+													<uib-pagination class="pagination-sm pagination" total-items="transaction.length" ng-model="page_detail"
+														ng-change="detailPageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>
+												</div>
+
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div>
+</div><!-- /.row -->
+<script>
+	$('[data-rel=tooltip]').tooltip();
+
+	$('.date-picker').datepicker({
+		autoclose: true,
+		todayHighlight: true
+	});
+</script>
