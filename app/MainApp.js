@@ -23,6 +23,11 @@ app.config(function($routeProvider) {
         controller:'SupplierController',
         title:'Supplier',
         parent:'Inventory'
+    }).when("/inventoryreport", {
+        templateUrl:'../views/contents/inventoryreport.html',
+        controller:'InventoryReportController',
+        title:'Report and History',
+        parent:'Inventory'
     });
 
 });

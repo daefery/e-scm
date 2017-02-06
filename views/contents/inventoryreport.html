@@ -1,0 +1,268 @@
+<div class="row">
+	<div class="col-xs-12" ng-hide="isForm">
+		<div class="table-responsive">
+			<div class="pull-left tableTools-container">
+				<div class="dt-buttons btn-overlap btn-group">
+					<input type="text" class="form-control" placeholder="Filter..." ng-model="filterText">
+				</div>
+				<div class="dt-buttons btn-overlap btn-group">
+					<select class="form-control" ng-model="filterType">
+						<option value="" selected disabled>Select Type</option>
+						<option value="">All</option>
+						<option value="Makanan">Makanan</option>
+						<option value="Minuman">Minuman</option>
+						<option value="Elektronik">Elektronik</option>
+						<option value="Mainan">Mainan</option>
+						<option value="Kesehatan">Kesehatan</option>
+						<option value="Lainnya">Lainnya</option>
+					</select>
+				</div>
+			</div>
+			<div class="pull-right tableTools-container">
+				<div class="dt-buttons btn-overlap btn-group">
+					<button class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" ng-click="printDiv('simple-table')" title="print" data-rel="tooltip">
+						<span><i class="fa fa-print bigger-110 blue"></i>
+						</span>
+					</button>
+				</div>
+			</div>
+			<table id="simple-table" class="table  table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Item Name</th>
+						<th>Description</th>
+						<th>Type</th>
+						<th>Price</th>
+						<th>Cost</th>
+						<th>Date</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat-start="x in filterData = (invreport | filter:{product_id:filterText, type:filterType}) | limitTo:10:10*(page-1)">
+						<td>{{x.product_id}}</td>
+						<td>{{x.name}}</td>
+						<td>{{x.description}}</td>
+						<td>{{x.type}}</td>
+						<td class="center">{{x.price | currency:"":0}}</td>
+						<td class="center">{{x.cost | currency:"":0}}</td>
+						<td>{{x.update_date}}</td>
+						<td>
+							<div class="hidden-sm hidden-xs action-buttons">
+								<a class="blue show-details-btn" id="detail-btn-{{x.product_id}}" href="" ng-click="viewDetail(x.product_id)">
+									<i class="ace-icon fa fa-search-plus bigger-130"></i>
+								</a>
+							</div>
+
+							<div class="hidden-md hidden-lg">
+								<div class="inline pos-rel">
+									<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+										<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+									</button>
+
+									<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+										<li>
+											<a href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.product_id)" class="tooltip-info" data-rel="tooltip" title="detail">
+												<span class="blue">
+													<i class="ace-icon fa fa-search-plus bigger-120"></i>
+												</span>
+											</a>
+										</li>
+										<li>
+											<a href="#purchaseorder" ng-if="x.status=='Out of Stock' || x.status=='Low Stock'" class="tooltip-info" data-rel="tooltip" title="Edit" ng-click="actionProduct('edit', x)">
+												<span class="green">
+													<i class="ace-icon fa fa-truck bigger-120"></i>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</td>
+
+					</tr>
+					<tr class="detail-row" id="detail-{{x.product_id}}" ng-repeat-end>
+						<td colspan="8">
+							<div class="table-detail">
+								<div class="row">
+									<div class="col-xs-6">
+										<h4>Detail Transaction</h4>
+										<div class="tabbable">
+											<ul class="nav nav-tabs" id="myTab">
+												<li class="active">
+													<a data-toggle="tab" href=".purchases-{{x.product_id}}">
+														<i class="ace-icon fa fa-shopping-cart bigger-120"></i>
+														Purchases
+													</a>
+												</li>
+												<li>
+													<a data-toggle="tab" href=".sales-{{x.product_id}}">
+														<i class="ace-icon fa fa-exchange bigger-120"></i>
+														Sales
+													</a>
+												</li>
+											</ul>
+
+											<div class="tab-content">
+												<div class="tab-pane fade in active purchases-{{x.product_id}}">
+													<table class="table table-bordered table-striped">
+														<thead class="thin-border-bottom">
+															<tr>
+																<th>
+																	<i class="ace-icon fa fa-caret-right blue"></i>Avg. Price
+																</th>
+																<th>
+																	<i class="ace-icon fa fa-caret-right blue"></i>Amount Paid
+																</th>
+																<th class="hidden-480">
+																	<i class="ace-icon fa fa-caret-right blue"></i>Total
+																</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td class="center">{{x.transaction.purchase.avg_price | currency:"":0}}</td>
+																<td class="center">{{x.transaction.purchase.amount_paid | currency:"":0}}</td>
+																<td class="center">{{x.transaction.purchase.total | currency:"":0}}</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="tab-pane fade sales-{{x.product_id}}">
+													<table class="table table-bordered table-striped">
+														<thead class="thin-border-bottom">
+															<tr>
+																<th>
+																	<i class="ace-icon fa fa-caret-right blue"></i>No Sold
+																</th>
+																<th>
+																	<i class="ace-icon fa fa-caret-right blue"></i>Sold
+																</th>
+																<th>
+																	<i class="ace-icon fa fa-caret-right blue"></i>Waste
+																</th>
+																<th class="hidden-480">
+																	<i class="ace-icon fa fa-caret-right blue"></i>Loss Price
+																</th>
+																<th class="hidden-480">
+																	<i class="ace-icon fa fa-caret-right blue"></i>Income After Tax
+																</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td class="center">{{x.transaction.sales.no_sold}}</td>
+																<td class="center">{{x.transaction.sales.sold}}</td>
+																<td class="center">{{x.transaction.sales.waste}}</td>
+																<td class="center">{{x.transaction.sales.loss_price | currency:"":0}}</td>
+																<td class="center">{{x.transaction.sales.income_at | currency:"":0}}</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-6">
+										<h4>Supplier Info</h4>
+										<div class="space visible-xs"></div>
+
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Name </div>
+
+												<div class="profile-info-value">
+													<span>{{x.supplier.name}}</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Location </div>
+
+												<div class="profile-info-value">
+													<i class="fa fa-map-marker light-orange bigger-110"></i>
+													<span>{{x.supplier.address}}</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Phone </div>
+
+												<div class="profile-info-value">
+													<span>{{x.supplier.phone}}</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Description </div>
+
+												<div class="profile-info-value">
+													<span>{{x.Supplier.description}}</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- <div class="col-xs-3">
+										<h5>Chart Sales</h5>
+										<div id="sales-charts"></div>
+									</div> -->
+								</div>
+							</div>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+			<div class="pull-right">
+				<uib-pagination class="pagination-sm pagination" total-items="stockmngt.length" ng-model="page"
+					ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>
+			</div>
+		</div>
+
+	</div><!-- /.span -->
+</div><!-- /.row -->
+<script>
+	$('[data-rel=tooltip]').tooltip();
+
+	$('.date-picker').datepicker({
+		autoclose: true,
+		todayHighlight: true
+	});
+	//
+	// var d1 = [];
+	// for (var i = 1; i <= 12; i ++) {
+	// 	d1.push([i, i*10]);
+	// }
+	// var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
+	// $.plot("#sales-charts", [
+	// 	{ label: "", data: d1 }
+	// ], {
+	// 	hoverable: true,
+	// 	shadowSize: 0,
+	// 	series: {
+	// 		lines: { show: true },
+	// 		points: { show: true }
+	// 	},
+	// 	xaxis: {
+	// 		tickLength: 0,
+	// 		min:0,
+	// 		max:12,
+	// 		tickDecimals:0
+	// 	},
+	// 	yaxis: {
+	// 		ticks: 10,
+	// 		min: 0,
+	// 		max: 100,
+	// 		tickDecimals: 0
+	// 	},
+	// 	grid: {
+	// 		backgroundColor: { colors: [ "#fff", "#fff" ] },
+	// 		borderWidth: 1,
+	// 		borderColor:'#555'
+	// 	}
+	// });
+</script>
