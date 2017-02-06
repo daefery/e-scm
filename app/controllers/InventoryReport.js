@@ -14,9 +14,9 @@ app.controller('InventoryReportController', function($scope, $http, $filter){
           'supplier':$filter('filter')(sup_result.supplier, {supplier_id:value.supplier_id})[0],
           'transaction':{
             'purchase':{
-              'avg_price':0,
-              'amount_paid':0,
-              'total':0
+              'avg_price':135000,
+              'amount_paid':100000,
+              'total':135000+100000
             },
             'sales':{
               'no_sold':8,

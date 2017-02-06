@@ -5,106 +5,38 @@
 			<div class="widget-header widget-header-flat">
 				<h4 class="widget-title lighter">
 					<i class="ace-icon fa fa-star orange"></i>
-					Popular Domains
+					Product Activity
 				</h4>
 
 				<div class="widget-toolbar">
-					<a href="#" data-action="collapse">
+					<a href="#product" data-action="collapse">
 						View Detail
 						<i class="ace-icon fa fa-chevron-right"></i>
 					</a>
 				</div>
 			</div>
-
 			<div class="widget-body">
 				<div class="widget-main no-padding">
-					<table class="table table-bordered table-striped">
-						<thead class="thin-border-bottom">
-							<tr>
-								<th>
-									<i class="ace-icon fa fa-caret-right blue"></i>name
-								</th>
+					<div class="col-xs-12">
+						<div class="timeline-container timeline-style2">
 
-								<th>
-									<i class="ace-icon fa fa-caret-right blue"></i>price
-								</th>
+							<div class="timeline-items">
+								<div class="timeline-item clearfix" ng-repeat="x in product | orderBy: 'lastupdate_date':true | limitTo:5">
+									<div class="timeline-info">
+										<span class="timeline-date">{{x.lastupdate_date}}</span>
 
-								<th class="hidden-480">
-									<i class="ace-icon fa fa-caret-right blue"></i>status
-								</th>
-							</tr>
-						</thead>
+										<i class="timeline-indicator btn btn-info no-hover"></i>
+									</div>
 
-						<tbody>
-							<tr>
-								<td>internet.com</td>
-
-								<td>
-									<small>
-										<s class="red">$29.99</s>
-									</small>
-									<b class="green">$19.99</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-info arrowed-right arrowed-in">on sale</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>online.com</td>
-
-								<td>
-									<b class="blue">$16.45</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-success arrowed-in arrowed-in-right">approved</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>newnet.com</td>
-
-								<td>
-									<b class="blue">$15.00</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-danger arrowed">pending</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>web.com</td>
-
-								<td>
-									<small>
-										<s class="red">$24.99</s>
-									</small>
-									<b class="green">$19.95</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label arrowed">
-										<s>out of stock</s>
-									</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>domain.com</td>
-
-								<td>
-									<b class="blue">$12.00</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-warning arrowed arrowed-right">SOLD</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+									<div class="widget-box transparent">
+										<div class="widget-body">
+											<div class="widget-main no-padding"> new product <strong>{{x.name}}</strong> added</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- /.timeline-items -->
+						</div><!-- /.timeline-container -->
+					</div>
 				</div><!-- /.widget-main -->
 			</div><!-- /.widget-body -->
 		</div><!-- /.widget-box -->
@@ -114,11 +46,11 @@
 			<div class="widget-header widget-header-flat">
 				<h4 class="widget-title lighter">
 					<i class="ace-icon fa fa-star orange"></i>
-					Popular Domains
+					Supplier Activity
 				</h4>
 
 				<div class="widget-toolbar">
-					<a href="#" data-action="collapse">
+					<a href="#supplier" data-action="collapse">
 						View Detail
 						<i class="ace-icon fa fa-chevron-right"></i>
 					</a>
@@ -127,93 +59,29 @@
 
 			<div class="widget-body">
 				<div class="widget-main no-padding">
-					<table class="table table-bordered table-striped">
-						<thead class="thin-border-bottom">
-							<tr>
-								<th>
-									<i class="ace-icon fa fa-caret-right blue"></i>name
-								</th>
+					<div class="comments">
+						<div class="itemdiv commentdiv" ng-repeat="x in supplier | orderBy: 'lastupdate_date':true | limitTo:5">
+							<div class="user">
+								<img alt="Joe's Avatar" src="../assets/images/avatars/avatar2.png" />
+							</div>
 
-								<th>
-									<i class="ace-icon fa fa-caret-right blue"></i>price
-								</th>
+							<div class="body">
+								<div class="name">
+									<b>{{x.name}}</b>
+								</div>
 
-								<th class="hidden-480">
-									<i class="ace-icon fa fa-caret-right blue"></i>status
-								</th>
-							</tr>
-						</thead>
+								<div class="time">
+									<i class="ace-icon fa fa-clock-o"></i>
+									<span class="orange">{{x.created_date}}</span>
+								</div>
 
-						<tbody>
-							<tr>
-								<td>internet.com</td>
-
-								<td>
-									<small>
-										<s class="red">$29.99</s>
-									</small>
-									<b class="green">$19.99</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-info arrowed-right arrowed-in">on sale</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>online.com</td>
-
-								<td>
-									<b class="blue">$16.45</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-success arrowed-in arrowed-in-right">approved</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>newnet.com</td>
-
-								<td>
-									<b class="blue">$15.00</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-danger arrowed">pending</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>web.com</td>
-
-								<td>
-									<small>
-										<s class="red">$24.99</s>
-									</small>
-									<b class="green">$19.95</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label arrowed">
-										<s>out of stock</s>
-									</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>domain.com</td>
-
-								<td>
-									<b class="blue">$12.00</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-warning arrowed arrowed-right">SOLD</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+								<div class="text">
+									<i class="ace-icon fa fa-map-marker light-orange bigger-110"></i>
+									{{x.address}}
+								</div>
+							</div>
+						</div>
+					</div>
 				</div><!-- /.widget-main -->
 			</div><!-- /.widget-body -->
 		</div><!-- /.widget-box -->
@@ -228,11 +96,11 @@
 			<div class="widget-header widget-header-flat">
 				<h4 class="widget-title lighter">
 					<i class="ace-icon fa fa-star orange"></i>
-					Popular Domains
+					Purchase Order Activity
 				</h4>
 
 				<div class="widget-toolbar">
-					<a href="#" data-action="collapse">
+					<a href="#purchaseorder" data-action="collapse">
 						View Detail
 						<i class="ace-icon fa fa-chevron-right"></i>
 					</a>
@@ -241,93 +109,71 @@
 
 			<div class="widget-body">
 				<div class="widget-main no-padding">
-					<table class="table table-bordered table-striped">
-						<thead class="thin-border-bottom">
-							<tr>
-								<th>
-									<i class="ace-icon fa fa-caret-right blue"></i>name
-								</th>
+					<ul id="tasks" class="item-list">
+						<li class="item-orange clearfix">
+							<label class="inline">
+								<span class="lbl"> Answering customer questions</span>
+							</label>
 
-								<th>
-									<i class="ace-icon fa fa-caret-right blue"></i>price
-								</th>
+							<div class="pull-right easy-pie-chart percentage" data-size="30" data-color="#ECCB71" data-percent="42">
+								<span class="percent">42</span>%
+							</div>
+						</li>
 
-								<th class="hidden-480">
-									<i class="ace-icon fa fa-caret-right blue"></i>status
-								</th>
-							</tr>
-						</thead>
+						<li class="item-red clearfix">
+							<label class="inline">
+								<span class="lbl"> Fixing bugs</span>
+							</label>
 
-						<tbody>
-							<tr>
-								<td>internet.com</td>
+							<div class="pull-right action-buttons">
+								<a href="#" class="blue">
+									<i class="ace-icon fa fa-pencil bigger-130"></i>
+								</a>
 
-								<td>
-									<small>
-										<s class="red">$29.99</s>
-									</small>
-									<b class="green">$19.99</b>
-								</td>
+								<span class="vbar"></span>
 
-								<td class="hidden-480">
-									<span class="label label-info arrowed-right arrowed-in">on sale</span>
-								</td>
-							</tr>
+								<a href="#" class="red">
+									<i class="ace-icon fa fa-trash-o bigger-130"></i>
+								</a>
 
-							<tr>
-								<td>online.com</td>
+								<span class="vbar"></span>
 
-								<td>
-									<b class="blue">$16.45</b>
-								</td>
+								<a href="#" class="green">
+									<i class="ace-icon fa fa-flag bigger-130"></i>
+								</a>
+							</div>
+						</li>
 
-								<td class="hidden-480">
-									<span class="label label-success arrowed-in arrowed-in-right">approved</span>
-								</td>
-							</tr>
+						<li class="item-default clearfix">
+							<label class="inline">
+								<span class="lbl"> Adding new features</span>
+							</label>
 
-							<tr>
-								<td>newnet.com</td>
+							<div class="pull-right pos-rel dropdown-hover">
+								<button class="btn btn-minier bigger btn-primary">
+									<i class="ace-icon fa fa-cog icon-only bigger-120"></i>
+								</button>
 
-								<td>
-									<b class="blue">$15.00</b>
-								</td>
+								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-caret dropdown-close dropdown-menu-right">
+									<li>
+										<a href="#" class="tooltip-success" data-rel="tooltip" title="Mark&nbsp;as&nbsp;done">
+											<span class="green">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+											</span>
+										</a>
+									</li>
 
-								<td class="hidden-480">
-									<span class="label label-danger arrowed">pending</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>web.com</td>
-
-								<td>
-									<small>
-										<s class="red">$24.99</s>
-									</small>
-									<b class="green">$19.95</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label arrowed">
-										<s>out of stock</s>
-									</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>domain.com</td>
-
-								<td>
-									<b class="blue">$12.00</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-warning arrowed arrowed-right">SOLD</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+									<li>
+										<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+											<span class="red">
+												<i class="ace-icon fa fa-trash-o bigger-110"></i>
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
 				</div><!-- /.widget-main -->
 			</div><!-- /.widget-body -->
 		</div><!-- /.widget-box -->
@@ -337,11 +183,11 @@
 			<div class="widget-header widget-header-flat">
 				<h4 class="widget-title lighter">
 					<i class="ace-icon fa fa-star orange"></i>
-					Popular Domains
+					Stock Management Activity
 				</h4>
 
 				<div class="widget-toolbar">
-					<a href="#" data-action="collapse">
+					<a href="#stockmanagement" data-action="collapse">
 						View Detail
 						<i class="ace-icon fa fa-chevron-right"></i>
 					</a>
@@ -358,7 +204,7 @@
 								</th>
 
 								<th>
-									<i class="ace-icon fa fa-caret-right blue"></i>price
+									<i class="ace-icon fa fa-caret-right blue"></i>cost
 								</th>
 
 								<th class="hidden-480">
@@ -366,73 +212,14 @@
 								</th>
 							</tr>
 						</thead>
-
 						<tbody>
-							<tr>
-								<td>internet.com</td>
-
-								<td>
-									<small>
-										<s class="red">$29.99</s>
-									</small>
-									<b class="green">$19.99</b>
+							<tr ng-repeat="x in stockmngt | limitTo:5">
+								<td>{{x.item_name}}</td>
+								<td class="center">
+									<b class="green">{{x.cost | currency:"":0}}</b>
 								</td>
-
 								<td class="hidden-480">
-									<span class="label label-info arrowed-right arrowed-in">on sale</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>online.com</td>
-
-								<td>
-									<b class="blue">$16.45</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-success arrowed-in arrowed-in-right">approved</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>newnet.com</td>
-
-								<td>
-									<b class="blue">$15.00</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-danger arrowed">pending</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>web.com</td>
-
-								<td>
-									<small>
-										<s class="red">$24.99</s>
-									</small>
-									<b class="green">$19.95</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label arrowed">
-										<s>out of stock</s>
-									</span>
-								</td>
-							</tr>
-
-							<tr>
-								<td>domain.com</td>
-
-								<td>
-									<b class="blue">$12.00</b>
-								</td>
-
-								<td class="hidden-480">
-									<span class="label label-warning arrowed arrowed-right">SOLD</span>
+									<span class="label" ng-class="{'label-danger':x.status=='Out of Stock', 'label-warning':x.status=='Low Stock', 'label-success':x.status=='In Stock'}">{{x.status}}</span>
 								</td>
 							</tr>
 						</tbody>

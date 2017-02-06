@@ -92,7 +92,9 @@
 					<th>Name</th>
 					<th>Description</th>
 					<th>Address</th>
-          <th>Phone</th>
+          			<th>Phone</th>
+          			<th>Create Date</th>
+          			<th>Last Update</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -110,6 +112,8 @@
 					<td>{{value.description}}</td>
 					<td>{{value.address}}</td>
 					<td>{{value.phone}}</td>
+					<td>{{value.created_date}}</td>
+					<td>{{value.lastupdate_date}}</td>
 					<td>
 						<div class="hidden-sm hidden-xs action-buttons">
 							<a class="blue" href="" ng-click="actionSupplier('edit', value)">

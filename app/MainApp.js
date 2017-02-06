@@ -5,7 +5,6 @@ app.config(function($routeProvider) {
   $routeProvider
   .when("/", {
       templateUrl:'../views/contents/landingpage.html',
-      controller:'LandingPageController',
       title:'Dashboard',
       parent:undefined
     }).when("/product", {
