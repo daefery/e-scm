@@ -27,6 +27,11 @@ app.config(function($routeProvider) {
         controller:'InventoryReportController',
         title:'Report and History',
         parent:'Inventory'
+    }).when("/newtransaction", {
+        templateUrl:'../views/contents/new_transaction.html',
+        controller:'NewTransactionController',
+        title:'New Transaction',
+        parent:'Transaction'
     });
 
 });

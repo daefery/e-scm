@@ -1,7 +1,7 @@
 <ul class="nav nav-list" ng-if="credential.type=='inv'">
   <li ng-class="{'active':title=='Dashboard'}">
 		<a href="/main/#/">
-			<i class="menu-icon fa fa-tachometer"></i>
+			<i class="menu-icon fa fa-home"></i>
 			<span class="menu-text"> Dashboard </span>
 		</a>
 
@@ -29,14 +29,6 @@
     <b class="arrow"></b>
 
     <ul class="submenu">
-      <!-- <li ng-class="{'active':title=='Manage Inventory'}">
-        <a href="#manageinventory">
-          <i class="menu-icon fa fa-caret-right"></i>
-          Manage Inventory
-        </a>
-
-        <b class="arrow"></b>
-      </li> -->
       <li ng-class="{'active':title=='Stock Management'}">
         <a href="#stockmanagement">
           <i class="menu-icon fa fa-caret-right"></i>
@@ -72,22 +64,53 @@
   </li>
 </ul><!-- /.nav-list -->
 <ul class="nav nav-list" ng-if="credential.type=='csr'">
-  <li class="">
-		<a href="/main">
-			<i class="menu-icon fa fa-tachometer"></i>
+  <li ng-class="{'active':title=='Dashboard'}">
+		<a href="/main/#/">
+			<i class="menu-icon fa fa-home"></i>
 			<span class="menu-text"> Dashboard </span>
 		</a>
 
 		<b class="arrow"></b>
 	</li>
-  <li class="">
-		<a href="/main">
-			<i class="menu-icon fa fa-shopping-bag"></i>
-			<span class="menu-text"> Transaction </span>
-		</a>
+ <li class="">
+    <a href="#" class="dropdown-toggle">
+      <i class="menu-icon fa fa-shopping-bag"></i>
+      <span class="menu-text">
+        Transaction
+      </span>
 
-		<b class="arrow"></b>
-	</li>
+      <b class="arrow fa fa-angle-down"></b>
+    </a>
+
+    <b class="arrow"></b>
+
+    <ul class="submenu">
+      <li ng-class="{'active':title=='New Transaction'}">
+        <a href="#newtransaction">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Create New Transaction
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li class="">
+        <a href="#inventorymanager">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Recent Transaction
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li ng-class="{'active':title=='Supplier'}">
+        <a href="#supplier">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Close Transaction
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+    </ul>
+  </li>
 </ul><!-- /.nav-list -->
 <ul class="nav nav-list" ng-if="credential.type=='admin'">
   <li class="">

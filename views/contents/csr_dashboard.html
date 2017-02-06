@@ -1,0 +1,58 @@
+<div class="row">
+	<div class="alert alert-block alert-warning">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="ace-icon fa fa-times"></i>
+		</button>
+		<p>
+			There are some update of product information, please click <a href="">here</a> to view product list and detail
+		</p>
+	</div>
+	<div class="col-sm-6">
+		<div class="widget-box transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-star orange"></i>
+					Transaction Activity
+				</h4>
+
+				<div class="widget-toolbar">
+					<a href="#stockmanagement" data-action="collapse">
+						View Detail
+						<i class="ace-icon fa fa-chevron-right"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					<table class="table table-bordered table-striped">
+						<thead class="thin-border-bottom">
+							<tr>
+								<th>
+									<i class="ace-icon fa fa-caret-right blue"></i>id
+								</th>
+
+								<th>
+									<i class="ace-icon fa fa-caret-right blue"></i>total
+								</th>
+
+								<th>
+									<i class="ace-icon fa fa-caret-right blue"></i>date
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in transaction | filter:{category:'selling'}">
+								<td>{{x.transaction_id}}</td>
+								<td class="center">
+									<b class="green">{{x.total | currency:"":0}}</b>
+								</td>
+								<td>{{x.transaction_date}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div><!-- /.widget-box -->
+	</div><!-- /.col -->
+</div>
