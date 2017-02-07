@@ -28,6 +28,7 @@
 			<table id="simple-table" class="table table-hover">
 				<thead>
 					<tr>
+						<th>No.</th>
 						<th>Code</th>
 						<th>Name</th>
 						<th class="center">Qty</th>
@@ -43,6 +44,7 @@
 
 				<tbody>
 					<tr ng-repeat="x in newentry">
+						<td>{{$index + 1}}</td>
 						<td>{{x.product_id}}</td>
 						<td>{{x.name}}</td>
 						<td>{{x.qty}}</td>
@@ -57,11 +59,11 @@
 						<td class="center">{{x.total | currency:"":0}}</td>
 						<td>
 							<div class="hidden-sm hidden-xs action-buttons">
-								<a class="blue" href="" ng-click="actionProduct('edit', x)">
+								<!-- <a class="blue" href="" ng-click="actionProduct('edit', $index)">
 									<i class="ace-icon fa fa-pencil bigger-130"></i>
-								</a>
+								</a> -->
 
-								<a class="red" href="" ng-click="saveProduct('delete', x)">
+								<a class="red" href="" ng-click="actionProduct('delete', $index)">
 									<i class="ace-icon fa fa-trash-o bigger-130"></i>
 								</a>
 							</div>
@@ -73,16 +75,16 @@
 									</button>
 
 									<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-										<li>
+										<!-- <li>
 											<a href="" class="tooltip-info" data-rel="tooltip" title="Edit" ng-click="actionProduct('edit', x)">
 												<span class="blue">
 													<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 												</span>
 											</a>
-										</li>
+										</li> -->
 
 										<li>
-											<a href="" class="tooltip-error" data-rel="tooltip" title="Delete" ng-click="saveProduct('delete', x)">
+											<a href="" class="tooltip-error" data-rel="tooltip" title="Delete" ng-click="actionProduct('delete', $index)">
 												<span class="red">
 													<i class="ace-icon fa fa-trash-o bigger-120"></i>
 												</span>
@@ -122,11 +124,11 @@
 					<div class="space-6"></div>
 					<div class="hr hr8 hr-double hr-dotted"></div>
 					<div class="pull-right">
-						<button class="btn btn-app btn-success btn-xs">
+						<button class="btn btn-app btn-success btn-xs" ng-click="onSave()">
 							<i class="ace-icon fa fa-save bigger-110"></i>
 							Save
 						</button>
-						<button class="btn btn-app btn-primary btn-xs">
+						<button class="btn btn-app btn-primary btn-xs" ng-click="onPrint()">
 							<i class="ace-icon fa fa-print bigger-110"></i>
 							Print
 						</button>

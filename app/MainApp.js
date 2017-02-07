@@ -32,6 +32,11 @@ app.config(function($routeProvider) {
         controller:'NewTransactionController',
         title:'New Transaction',
         parent:'Transaction'
+    }).when("/recenttransaction", {
+        templateUrl:'../views/contents/recent_transaction.html',
+        controller:'RecentTransactionController',
+        title:'Recent Transaction',
+        parent:'Transaction'
     });
 
 });

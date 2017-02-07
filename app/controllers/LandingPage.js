@@ -38,5 +38,21 @@ app.controller('LandingPageChasierController', function($scope, $http, $filter) 
 	    	});
 	    });
     });
-    console.log($scope.transaction);
+
+    $scope.viewProduct = function(){
+      $scope.list_product = [];
+      $http.get('../../data/product.json').success(function(result){
+        angular.forEach(result.product, function(val, key){
+          var dat = {
+            product_id:val.product_id,
+            name:val.name,
+            stock:val.qty,
+            price:val.price,
+            newstock:val.qty + 2,
+            newprice:val.price * 2
+          }
+          $scope.list_product.push(dat);
+        });
+      });
+    }
 });
