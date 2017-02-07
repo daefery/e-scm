@@ -1,30 +1,31 @@
-app.controller('PurchaseOrderController', function($scope, $http) {
+app.controller('PurchaseOrderController', function($scope, $http, $filter) {
   $scope.po = undefined;
   $scope.purchase_orders = [];
-  $scope.suppliers = {};
+  $scope.supplier = {};
   $scope.isForm = false;
   $http.get('../../data/supplier.json').success(function(result_sup){
     $scope.supplier = angular.copy(result_sup.supplier);
-    $http.get('../../data/purchase_order.json').success(function(result){
-      angular.forEach(result.purchase_order, function(val, key){
-        var p = $filter('filter')($scope.supplier, {supplier_id:val.supplier_id})[0];
-        var dat = {
-          "po_id": val.po_id,
-          "detail_id": val.detail_id,
-          "supplier_id": p.id,
-          "user_id": val.user_id,
-          "po_number": val.po_number,
-          "shipping_address": val.shipping_address,
-          "billing_address": val.billing_address,
-          "shipping_date": val.shipping_date,
-          "status": val.status,
-          "created_date": val.created_date
-        };
-        $scope.purchase_orders.push(dat);
-      });
-      $scope.page = 1;
-      $scope.displayItems = $scope.purchase_orders.slice(0, 5);
-
+      $http.get('../data/product.json').success(function(result_prod){
+        $scope.product = angular.copy(result_prod.product);
+        $http.get('../../data/purchase_order.json').success(function(result){
+          angular.forEach(result.purchase_order, function(val, key){
+            var prod = $filter('filter')($scope.product, {product_id: val.product_id})[0];
+            var p = $filter('filter')($scope.supplier, {supplier_id:val.supplier_id})[0];
+            var dat = {
+              "po_number": val.po_number,
+              "product_name": prod.name,
+              "supplier_name": p.name,
+              "shipping_address": val.shipping_address,
+              "billing_address": val.billing_address,
+              "shipping_date": val.shipping_date,
+              "status": val.status,
+              "created_date": val.created_date
+            };
+            $scope.purchase_orders.push(dat);
+          });
+          $scope.page = 1;
+          $scope.displayItems = $scope.purchase_orders.slice(0, 5);
+      })
     });
   });
 
@@ -32,6 +33,29 @@ app.controller('PurchaseOrderController', function($scope, $http) {
 	  var startPos = ($scope.page - 1) * 10;
 	  console.log($scope.page);
 	};
+
+  $scope.viewDetail = function(data) {
+    $scope.products = [];
+    $http.get('../../data/product.json').success(function(product_result){
+      var product = angular.copy(product_result.product);
+      angular.forEach(product, function(val, key){
+        var dat = {
+          "product_name":val.name,
+          "type":val.type,
+          "description":val.description,
+          "price":val.price,
+          "cost":val.cost
+        };
+        $scope.products.push(dat);
+      });
+      $scope.page_detail = 1;
+      $scope.displayItems = $scope.products.slice(0, 10);
+    });
+  }
+
+  $scope.showProduct = function(data){
+    $('.select-product').slideDown();
+  }
 
   $scope.actionPurchaseOrder = function(type, data){
     switch (type) {

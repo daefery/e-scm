@@ -12,19 +12,21 @@
 						<fieldset>
 							<div class="row">
 								<div class="col-xs-6">
-									<select class="form-control" ng-model="po.detail_id" id="form-field-select-3" placeholder="Choose a detail...">
-										<option value="" disabled selected>Select Detail</option>
-										<option ng-repeat="det in detail" value="{{det.detail_id}}">{{det.detail_id}}</option>
-									</select>
-								</div>
-							</div>
-							<div class="space-4"></div>
-							<div class="row">
-								<div class="col-xs-6">
-									<select class="form-control" ng-model="po.supplier_id" id="form-field-select-3" placeholder="Choose a Supplier...">
+									<select class="form-control" ng-model="po.supplier_id" id="form-field-select-3" ng-change="showProduct()" placeholder="Choose a Supplier...">
 										<option value="" disabled selected>Select Supplier</option>
 										<option ng-repeat="sup in supplier" value="{{sup.supplier_id}}">{{sup.name}}</option>
 									</select>
+								</div>
+							</div>
+							<div class="select-product" style="display:none">
+								<div class="space-4"></div>
+								<div class="row">
+									<div class="col-xs-6">
+										<select class="form-control" ng-model="po.supplier_id" id="form-field-select-3 select-product" placeholder="Choose a Product...">
+											<option value="" disabled selected>Select Product</option>
+											<option ng-repeat="prod in product" value="{{prod.detail_id}}">{{prod.name}}</option>
+										</select>
+									</div>
 								</div>
 							</div>
 							<div class="space-4"></div>
@@ -48,7 +50,10 @@
 							<div class="space-4"></div>
 							<div class="row">
 								<div class="col-xs-4">
-									<input type="text" id="form-field-1-1" ng-model="po.status" placeholder="Status" class="form-control" />
+									<select class="form-control" ng-model="po.status" id="form-field-select-3" placeholder="Select status">
+										<option value="" disabled selected>Select status</option>
+										<option value="Paid">Paid</option>
+									</select>
 								</div>
 							</div>
 						</fieldset>
@@ -103,38 +108,21 @@
 		<table id="simple-table" class="table  table-bordered table-hover">
 			<thead>
 				<tr>
-					<!-- <th class="center">
-						<label class="pos-rel">
-							<input type="checkbox" class="ace" />
-							<span class="lbl"></span>
-						</label>
-					</th> -->
-					<th>PO Id</th>
-					<th>Detail Id</th>
-					<th>Supplier Id</th>
-					<th>User Id</th>
-          <th>PO Number</th>
+					<th>PO Number</th>
+					<th>Supplier</th>
 					<th>Shipping Address</th>
           <th>Billing Address</th>
           <th>Shipping Date</th>
           <th>Status</th>
           <th>Created Date</th>
+					<th></th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<tr ng-repeat="(key, value) in filterData = (purchase_orders | filter:{po_number:filterText}) | limitTo:10:10*(page-1)">
-					<!-- <td class="center">
-						<label class="pos-rel">
-							<input type="checkbox" class="ace" />
-							<span class="lbl"></span>
-						</label>
-					</td> -->
-					<td>{{value.po_id}}</td>
-					<td>{{value.detail_id}}</td>
-					<td>{{value.supplier_id}}</td>
-					<td>{{value.user_id}}</td>
 					<td>{{value.po_number}}</td>
+					<td>{{value.supplier_name}}</td>
           <td>{{value.shipping_address}}</td>
           <td>{{value.billing_address}}</td>
           <td>{{value.shipping_date}}</td>
@@ -142,6 +130,10 @@
           <td>{{value.created_date}}</td>
 					<td>
 						<div class="hidden-sm hidden-xs action-buttons">
+							<a class="blue" href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.detail_id)">
+								<i class="ace-icon fa fa-search-plus bigger-130"></i>
+							</a>
+
 							<a class="blue" href="" ng-click="actionPurchaseOrder('edit', value)">
 								<i class="ace-icon fa fa-pencil bigger-130"></i>
 							</a>
@@ -186,7 +178,59 @@
 		</div>
 	</div><!-- /.span -->
 </div><!-- /.row -->
+<div class="modal fade modal-table" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span class="white">&times;</span>
+					</button>
+					Results for Detail Product
+				</div>
+			</div>
 
+			<div class="modal-body no-padding">
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Description</th>
+								<th>Price</th>
+								<th>Cost</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="prod in products | orderBy: 'product_name':true | limitTo:10:10*(page-1)">
+								<td>{{prod.product_name}}</td>
+								<td>{{prod.type}}</td>
+								<td>{{prod.description}}</td>
+								<td>{{prod.price}}</td>
+								<td>{{prod.cost}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="modal-footer no-margin-top">
+				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-times"></i>
+					Close
+				</button>
+				<div class="pull-right no-margin" style="margin-top: -15px !important;margin-bottom: -25px !important;">
+					<uib-pagination class="pagination-sm pagination" total-items="transaction.length" ng-model="page_detail"
+						ng-change="detailPageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>
+				</div>
+
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+</div><!-- /.row -->
 <script>
 	$('[data-rel=tooltip]').tooltip();
 
