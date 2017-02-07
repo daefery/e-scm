@@ -1,1 +1,44 @@
-<h1>Audit Trail</h1>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="pull-left tableTools-container">
+			<div class="dt-buttons btn-overlap btn-group">
+        <select class="form-control" ng-model="filterType">
+          <option value="" selected disabled>Select Type</option>
+          <option value="">All</option>
+          <option value="create">Create</option>
+          <option value="delete">Delete</option>
+          <option value="update">Update</option>
+          <option value="authentication">Authentication</option>
+        </select>
+			</div>
+		</div>
+		<table id="simple-table" class="table  table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>User</th>
+					<th>Event Type</th>
+					<th>Description</th>
+    			<th>Date</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="x in AuditTrail | filter:{event_type:filterType}">
+					<td>{{x.id}}</td>
+					<td>{{x.user}}</td>
+					<td>{{x.event_type}}</td>
+					<td>{{x.description}}</td>
+					<td>{{x.created_date}}</td>
+			</tbody>
+		</table>
+		<!-- <div class="pull-right">
+			<uib-pagination class="pagination-sm pagination" total-items="suppliers.length" ng-model="page"
+				ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>
+		</div> -->
+	</div><!-- /.span -->
+</div><!-- /.row -->
+
+<script>
+	$('[data-rel=tooltip]').tooltip();
+</script>
