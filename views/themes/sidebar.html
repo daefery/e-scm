@@ -105,9 +105,9 @@
   </li>
 </ul><!-- /.nav-list -->
 <ul class="nav nav-list" ng-if="credential.type=='admin'">
-  <li class="">
-		<a href="/main">
-			<i class="menu-icon fa fa-tachometer"></i>
+  <li ng-class="{'active':title=='Dashboard'}">
+		<a href="/main/#/">
+			<i class="menu-icon fa fa-home"></i>
 			<span class="menu-text"> Dashboard </span>
 		</a>
 
@@ -129,8 +129,8 @@
 
 		<b class="arrow"></b>
 	</li>
-  <li class="">
-		<a href="/main">
+  <li ng-class="{'active':title=='Audit Trail'}">
+		<a href="#audittrail">
 			<i class="menu-icon fa fa-industry"></i>
 			<span class="menu-text"> Audit Trail </span>
 		</a>

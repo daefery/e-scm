@@ -1,0 +1,3 @@
+app.controller('AuditTrailController', function($scope, $http, $filter) {
+	// body...
+});

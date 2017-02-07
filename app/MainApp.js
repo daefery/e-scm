@@ -7,7 +7,10 @@ app.config(function($routeProvider) {
       templateUrl:'../views/contents/landingpage.html',
       title:'Dashboard',
       parent:undefined
-    }).when("/product", {
+    });
+
+  /*Route Inventory*/
+  $routeProvider.when("/product", {
         templateUrl:'../views/contents/product.html',
         controller:'ProductController',
         title:'Product',
@@ -27,7 +30,10 @@ app.config(function($routeProvider) {
         controller:'InventoryReportController',
         title:'Report and History',
         parent:'Inventory'
-    }).when("/newtransaction", {
+    });
+
+  /*Route Chasier*/
+    $routeProvider.when("/newtransaction", {
         templateUrl:'../views/contents/new_transaction.html',
         controller:'NewTransactionController',
         title:'New Transaction',
@@ -37,6 +43,14 @@ app.config(function($routeProvider) {
         controller:'RecentTransactionController',
         title:'Recent Transaction',
         parent:'Transaction'
+    });
+
+  /*Route Admin*/
+    $routeProvider.when("/audittrail", {
+        templateUrl:'../views/contents/audittrail.html',
+        controller:'AuditTrailController',
+        title:'Audit Trail',
+        parent:undefined
     });
 
 });
