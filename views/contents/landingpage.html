@@ -1,5 +1,7 @@
-<div ng-if="credential.type=='csr'"><h1>CHASIER</h1></div>
-<div ng-if="credential.type=='inv'">
+<div ng-if="credential.type=='csr'" ng-controller="LandingPageChasierController">
+	<div ng-include="'../views/contents/csr_dashboard.html'"></div>
+</div>
+<div ng-if="credential.type=='inv'" ng-controller="LandingPageInventoryController">
 	<div ng-include="'../views/contents/inv_dashboard.html'"></div>
 </div>
 <div ng-if="credential.type=='admin'"><h1>ADMIN</h1></div>

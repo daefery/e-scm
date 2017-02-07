@@ -40,7 +40,6 @@ app.controller('StockManagementController', function($scope, $http, $filter) {
   $scope.viewDetail = function(data) {
     $scope.transaction = [];
     var total = $filter('filter')($scope.stockmngt, {product_id:data})[0].price;
-    console.log()
     $http.get('../../data/transaction_detail.json').success(function(trdtl_result){
       var trdtl = angular.copy(trdtl_result.transaction_detail);
       angular.forEach(trdtl, function(val, key){

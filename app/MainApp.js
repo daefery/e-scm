@@ -5,7 +5,6 @@ app.config(function($routeProvider) {
   $routeProvider
   .when("/", {
       templateUrl:'../views/contents/landingpage.html',
-      controller:'LandingPageController',
       title:'Dashboard',
       parent:undefined
     }).when("/product", {
@@ -28,6 +27,21 @@ app.config(function($routeProvider) {
         controller:'PurchaseOrderController',
         title:'Purchase Order',
         parent: 'Inventory'
+    }).when("/inventoryreport", {
+        templateUrl:'../views/contents/inventoryreport.html',
+        controller:'InventoryReportController',
+        title:'Report and History',
+        parent:'Inventory'
+    }).when("/newtransaction", {
+        templateUrl:'../views/contents/new_transaction.html',
+        controller:'NewTransactionController',
+        title:'New Transaction',
+        parent:'Transaction'
+    }).when("/recenttransaction", {
+        templateUrl:'../views/contents/recent_transaction.html',
+        controller:'RecentTransactionController',
+        title:'Recent Transaction',
+        parent:'Transaction'
     });
 
 });

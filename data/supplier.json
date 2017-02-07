@@ -5,42 +5,54 @@
       "name": "Bagus",
       "description": "Supplier beras",
       "address": "Jl. Encep Kartawiria No. 45, Cimahi",
-      "phone": "+62812344324"
+      "phone": "+62812344324",
+      "created_date":"10/10/2016",
+      "lastupdate_date":"10/10/2016"
     },
     {
       "supplier_id": 2,
       "name": "Asep",
       "description": "Supplier alat tulis",
       "address": "Jl. Astana anyar No. 144, Bandung",
-      "phone": "+628574432423"
+      "phone": "+628574432423",
+      "created_date":"11/10/2016",
+      "lastupdate_date":"11/10/2016"
     },
     {
       "supplier_id": 3,
       "name": "Hendra",
       "description": "Supplier alat elektronik",
       "address": "Jl. Raya Cikalong Wetan No. 14, Padalarang",
-      "phone": "+6287899344123"
+      "phone": "+6287899344123",
+      "created_date":"12/10/2016",
+      "lastupdate_date":"12/10/2016"
     },
     {
       "supplier_id": 4,
       "name": "Gufron",
       "description": "Supplier obat-obatan",
       "address": "Jl. A. Yani No. 128A, Bandung",
-      "phone": "+62989732122"
+      "phone": "+62989732122",
+      "created_date":"13/10/2016",
+      "lastupdate_date":"13/10/2016"
     },
     {
       "supplier_id": 5,
       "name": "Nanang",
       "description": "Supplier rokok",
       "address": "Jl. H. Gofur No. 78, Cimahi",
-      "phone": "+6281834234445"
+      "phone": "+6281834234445",
+      "created_date":"14/10/2016",
+      "lastupdate_date":"14/10/2016"
     },
     {
       "supplier_id": 6,
       "name": "Selamet",
       "description": "Supplier Mainan",
       "address": "Jl. H. Gofur No. 78, Cimahi",
-      "phone": "+6281834234445"
+      "phone": "+6281834234445",
+      "created_date":"15/10/2016",
+      "lastupdate_date":"15/10/2016"
     }
   ]
 }

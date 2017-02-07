@@ -1,0 +1,146 @@
+<div class="row">
+	<div class="col-xs-12" ng-hide="isForm">
+		<div class="table-responsive">
+			<div class="pull-left tableTools-container">
+				<div class="dt-buttons btn-overlap btn-group">
+          <button class="btn btn-white btn-warning btn-bold" ng-click="closeTransaction()">
+						<i class="ace-icon fa fa-times-circle bigger-120 orange"></i>
+						Close Transaction
+					</button>
+				</div>
+			</div>
+			<div class="pull-right tableTools-container">
+				<div class="dt-buttons btn-overlap btn-group">
+					<button class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" ng-click="onPrint()" title="print" data-rel="tooltip">
+						<span><i class="fa fa-print bigger-110 blue"></i>
+						</span>
+					</button>
+				</div>
+			</div>
+			<table id="simple-table" class="table  table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Transaction Id</th>
+						<th>Total Price</th>
+						<th>Transaction Date</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="x in rectrans | filter:{category:'selling'}">
+						<td>{{x.transaction_id}}</td>
+						<td class="center">{{x.total | currency:"":0}}</td>
+            <td>{{x.transaction_date}}</td>
+						<td>
+							<div class="hidden-sm hidden-xs action-buttons">
+								<a class="blue" href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.transaction_detail_id)">
+									<i class="ace-icon fa fa-search-plus bigger-130"></i>
+								</a>
+							</div>
+
+							<div class="hidden-md hidden-lg">
+								<div class="inline pos-rel">
+									<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+										<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+									</button>
+									<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+										<li>
+											<a href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.transaction_detail_id)" class="tooltip-info" data-rel="tooltip" title="detail">
+												<span class="blue">
+													<i class="ace-icon fa fa-search-plus bigger-120"></i>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="pull-right">
+				<uib-pagination class="pagination-sm pagination" total-items="stockmngt.length" ng-model="page"
+					ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>
+			</div>
+		</div>
+
+	</div><!-- /.span -->
+	<div class="modal fade modal-table" tabindex="-1">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header no-padding">
+												<div class="table-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+														<span class="white">&times;</span>
+													</button>
+													Results for Detail Transaction
+												</div>
+											</div>
+
+											<div class="modal-body no-padding">
+												<div class="table-responsive">
+													<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+														<thead>
+															<tr>
+                    						<th>Code</th>
+                    						<th>Name</th>
+                    						<th class="center">Qty</th>
+                    						<th class="center">Price</th>
+                    						<th class="center">Disc. Status</th>
+                    						<th class="center">Disc. Min</th>
+                    						<th class="center">Disc. Rate</th>
+                    						<th>Expired Date</th>
+                    						<th class="center">Total</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="tr in detail_transaction">
+                                <td>{{tr.product.product_id}}</td>
+																<td>{{tr.product.name}}</td>
+																<td class="center">{{tr.qty}}</td>
+																<td class="center">{{tr.product.price | currency:"":0}}</td>
+                                <td class="center">
+                    							<i ng-if="tr.product.discount_status" class="ace-icon fa fa-check green bigger-130"></i>
+                    							<i ng-if="!tr.product.discount_status" class="ace-icon fa fa-remove red bigger-130"></i>
+                    						</td>
+                                <td class="center">{{tr.product.discount_qty_min}}</td>
+                    						<td class="center">{{tr.product.discount_rate}}%</td>
+                    						<td>{{tr.product.expired_date}}</td>
+                    						<td class="center">{{tr.total | currency:"":0}}</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+
+											<div class="modal-footer no-margin-top">
+												<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+													<i class="ace-icon fa fa-times"></i>
+													Close
+												</button>
+												<div class="pull-right no-margin">
+                          <h5 class="pull-right">
+                            Total Before Discount :
+                            <s ng-if="totalDiscount != 0" class="red">{{totalBeforeDsc | currency:"":0}}</s>
+                            <span ng-if="totalDiscount == 0" class="red">{{totalBeforeDsc | currency:"":0}}</span>
+                          </h5>
+                            <h5 class="pull-right" style="margin-right: 10px !important;">
+                              Total Discount :
+                              <span class="red">{{totalDiscount | currency:"":0}}</span>
+                            </h5>
+                            <div class="space-4"></div>
+                            <h5 class="pull-right">
+                              Total amount :
+                              <span class="red">{{totalAmount | currency:"":0}}</span>
+                            </h5>
+												</div>
+
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div>
+</div><!-- /.row -->
+<script>
+	$('[data-rel=tooltip]').tooltip();
+</script>

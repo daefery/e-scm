@@ -36,7 +36,7 @@
       "expired_status": true,
       "expired_date": "10/10/2020",
       "created_date": "10/10/2016",
-      "lastupdate_date": "10/10/2016"
+      "lastupdate_date": "12/10/2016"
     },
     {
       "product_id": 9001128,
@@ -55,7 +55,7 @@
       "expired_status": true,
       "expired_date": "10/10/2020",
       "created_date": "10/10/2016",
-      "lastupdate_date": "10/10/2016"
+      "lastupdate_date": "13/10/2016"
     },
     {
       "product_id": 5123015,
@@ -74,7 +74,7 @@
       "expired_status": true,
       "expired_date": "10/10/2020",
       "created_date": "10/10/2016",
-      "lastupdate_date": "10/10/2016"
+      "lastupdate_date": "14/10/2016"
     },
     {
       "product_id": 9253300,
@@ -93,7 +93,7 @@
       "expired_status": true,
       "expired_date": "10/10/2020",
       "created_date": "10/10/2016",
-      "lastupdate_date": "10/10/2016"
+      "lastupdate_date": "15/10/2016"
     },
     {
       "product_id": 9253100,
@@ -112,7 +112,7 @@
       "expired_status": false,
       "expired_date": "",
       "created_date": "10/10/2016",
-      "lastupdate_date": "10/10/2016"
+      "lastupdate_date": "16/10/2016"
     }
   ]
 }
