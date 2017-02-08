@@ -76,7 +76,7 @@
 								<a class="blue" href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.product_id)">
 									<i class="ace-icon fa fa-search-plus bigger-130"></i>
 								</a>
-								<a ng-if="x.status=='Out of Stock' || x.status=='Low Stock'" class="green" href="#purchaseorder" ng-click="actionProduct('edit', x)">
+								<a ng-if="x.status=='Out of Stock' || x.status=='Low Stock'" class="green" href="#purchase_order" ng-click="actionProduct('edit', x)">
 									<i class="ace-icon fa fa-truck bigger-130"></i>
 								</a>
 							</div>
@@ -96,7 +96,7 @@
 											</a>
 										</li>
 										<li>
-											<a href="#purchaseorder" ng-if="x.status=='Out of Stock' || x.status=='Low Stock'" class="tooltip-info" data-rel="tooltip" title="Edit" ng-click="actionProduct('edit', x)">
+											<a href="#purchase_order" ng-if="x.status=='Out of Stock' || x.status=='Low Stock'" class="tooltip-info" data-rel="tooltip" title="Edit" ng-click="actionProduct('edit', x)">
 												<span class="green">
 													<i class="ace-icon fa fa-truck bigger-120"></i>
 												</span>
