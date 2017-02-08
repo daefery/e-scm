@@ -1,8 +1,9 @@
 app.controller('PurchaseOrderController', function($scope, $http, $filter) {
-  $scope.po = undefined;
+  $scope.po = {};
   $scope.purchase_orders = [];
   $scope.supplier = {};
   $scope.isForm = false;
+  $scope.isProduct = false;
   $http.get('../../data/supplier.json').success(function(result_sup){
     $scope.supplier = angular.copy(result_sup.supplier);
       $http.get('../data/product.json').success(function(result_prod){
@@ -12,6 +13,7 @@ app.controller('PurchaseOrderController', function($scope, $http, $filter) {
             var prod = $filter('filter')($scope.product, {product_id: val.product_id})[0];
             var p = $filter('filter')($scope.supplier, {supplier_id:val.supplier_id})[0];
             var dat = {
+              "supplier_id":p.supplier_id,
               "po_number": val.po_number,
               "product_name": prod.name,
               "supplier_name": p.name,
@@ -53,38 +55,53 @@ app.controller('PurchaseOrderController', function($scope, $http, $filter) {
     });
   }
 
-  $scope.showProduct = function(data){
-    $('.select-product').slideDown();
+  $scope.showProduct = function(id){
+    $scope.isProduct = true;
+    $scope.listRestock = [];
+    $http.get('../../data/product.json').success(function(product_result){
+      var prod = $filter('filter')(product_result.product, {supplier_id: id});
+      angular.forEach(prod, function(val, key){
+        var dat =
+          {
+            "product_id": val.product_id,
+            "name": val.name,
+            "cost": val.cost,
+            "status":'Low Stock'
+          };
+          $scope.listRestock.push(dat);
+      });
+    });
   }
+
 
   $scope.actionPurchaseOrder = function(type, data){
     switch (type) {
       case 'create':
           $scope.isForm = true;
-          $scope.po = undefined;
+          $scope.po.po_number = 'PO-'+Math.floor(Math.random()*900000) + 100000;
         break;
       case 'edit':
           $scope.isForm = true;
           $scope.po = data;
           $scope.po.type = 'edit';
+          $scope.showProduct(data.supplier_id);
         break;
       case 'cancel':
           $scope.isForm = false;
-          $scope.po = undefined;
+          $scope.po = {};
         break;
       case 'delete':
       bootbox.confirm("Are you sure?", function(result) {
           if(result) {
             var pr = angular.copy($scope.purchase_orders);
             angular.forEach(pr, function(val, key){
-              console.log(val);
               var index = $scope.purchase_orders.indexOf(val)
               $scope.purchase_orders.splice(index,1);
             });
 
             $.gritter.add({
                 title: 'Success Message',
-                text: 'Congratulation, purchase order deleted succespoully.',
+                text: 'Congratulation, purchase order deleted successfully.',
                 class_name: 'gritter-success gritter-center'
               });
             $scope.$apply();
@@ -106,13 +123,13 @@ app.controller('PurchaseOrderController', function($scope, $http, $filter) {
           shipping_address: data.shipping_address,
           billing_address: data.billing_address,
           shipping_date: data.shipping_date,
-          status: data.status,
-          created_date: data.created_date
+          status: 'Draft',
+          created_date: '10/09/2016'
         }
         $scope.purchase_orders.push(param);
         $.gritter.add({
           title: 'Success Message',
-          text: 'Congratulation, purchase order created succespoully.',
+          text: 'Congratulation, purchase order created successfully.',
           class_name: 'gritter-success gritter-center'
         });
         $scope.isForm = false;
@@ -120,7 +137,7 @@ app.controller('PurchaseOrderController', function($scope, $http, $filter) {
       case 'edit':
         $.gritter.add({
           title: 'Success Message',
-          text: 'Congratulation, purchase order updated succespoully.',
+          text: 'Congratulation, purchase order updated successfully.',
           class_name: 'gritter-success gritter-center'
         });
         $scope.isForm = false;
@@ -133,12 +150,26 @@ app.controller('PurchaseOrderController', function($scope, $http, $filter) {
               $scope.$apply();
               $.gritter.add({
                 title: 'Success Message',
-                text: 'Congratulation, purchase order deleted succespoully.',
+                text: 'Congratulation, purchase order deleted successfully.',
                 class_name: 'gritter-success gritter-center'
               });
             }
         });
         break;
     }
+  }
+
+  $scope.sendRequest = function(data){
+    bootbox.confirm("Want to send request?", function(result) {
+      if(result) {
+        $.gritter.add({
+          title: 'Success Message',
+          text: 'Congratulation, request sent successfully.',
+          class_name: 'gritter-success gritter-center'
+        });
+        $scope.purchase_orders[data].status = 'Waiting';
+        $scope.$apply();
+      }
+    });
   }
 });
