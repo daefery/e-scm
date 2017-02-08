@@ -20,6 +20,19 @@ app.controller('LandingPageInventoryController', function($scope, $http, $filter
         });
       });
     });
+
+
+    $http.get('../../data/purchase_order.json').success(function(result){
+        $scope.purchase_order = [];//angular.copy(result.purchase_order);
+        angular.forEach(result.purchase_order, function(val, key){
+          var dat = {
+            po:val.po_number,
+            status:val.status,
+            percentage:(val.status=='Draft' ? 20:val.status=='Waiting' ? 60:val.status=='Approved' ? 80:100)
+          }
+          $scope.purchase_order.push(dat);
+        });
+    });
 });
 
 app.controller('LandingPageChasierController', function($scope, $http, $filter) {

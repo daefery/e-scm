@@ -25,6 +25,11 @@ app.config(function($routeProvider) {
         controller:'SupplierController',
         title:'Supplier',
         parent:'Inventory'
+    }).when("/purchase_order", {
+        templateUrl:'../views/contents/purchase_order.html',
+        controller:'PurchaseOrderController',
+        title:'Purchase Order',
+        parent: 'Inventory'
     }).when("/inventoryreport", {
         templateUrl:'../views/contents/inventoryreport.html',
         controller:'InventoryReportController',
