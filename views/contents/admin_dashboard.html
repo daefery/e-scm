@@ -1,0 +1,93 @@
+<div class="row">
+	<div class="col-sm-6">
+		<div class="widget-box transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-star orange"></i>
+					Transaction Request Activity
+				</h4>
+
+				<div class="widget-toolbar">
+					<a href="#approvaltransaction" data-action="collapse">
+						View Detail
+						<i class="ace-icon fa fa-chevron-right"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					<table class="table table-bordered table-striped">
+						<thead class="thin-border-bottom">
+							<tr>
+								<th>
+									<i class="ace-icon fa fa-caret-right blue"></i>po number
+								</th>
+
+								<th>
+									<i class="ace-icon fa fa-caret-right blue"></i>supplier
+								</th>
+
+								<th>
+									<i class="ace-icon fa fa-caret-right blue"></i>status
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in purchase_orders | limitTo:3">
+                <td>{{x.po_number}}</td>
+								<td>{{x.supplier_name}}</td>
+								<td>
+                  <span class="label" ng-class="{'label-danger':x.status=='Rejected', 'label-warning':x.status=='Draft', 'label-success':x.status=='Complete', 'label-default':x.status=='Waiting', 'label-primary':x.status=='Approved'}">{{x.status}}</span>
+                </td>
+							</tr>
+						</tbody>
+					</table>
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div><!-- /.widget-box -->
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<div class="widget-box transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-star orange"></i>
+					Recent Audit Trail
+				</h4>
+
+				<div class="widget-toolbar">
+					<!-- <a href="#recenttransaction" data-action="collapse">
+						View Detail
+						<i class="ace-icon fa fa-chevron-right"></i>
+					</a> -->
+				</div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+
+          <table class="table table-bordered table-striped">
+      			<thead>
+      				<tr>
+      					<th>Id</th>
+      					<th>User</th>
+      					<th>Event Type</th>
+      					<th>Description</th>
+          			<th>Date</th>
+      				</tr>
+      			</thead>
+
+      			<tbody>
+      				<tr ng-repeat="x in AuditTrail | limitTo:3">
+      					<td>{{x.id}}</td>
+      					<td>{{x.user}}</td>
+      					<td>{{x.event_type}}</td>
+      					<td>{{x.description}}</td>
+      					<td>{{x.created_date}}</td>
+      			</tbody>
+      		</table>
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div><!-- /.widget-box -->
+	</div><!-- /.col -->
+</div>

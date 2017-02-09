@@ -69,3 +69,47 @@ app.controller('LandingPageChasierController', function($scope, $http, $filter) 
       });
     }
 });
+
+app.controller('LandingPageAdminController', function($scope, $http, $filter) {
+  $scope.purchase_orders = [];
+  $http.get('../../data/supplier.json').success(function(result_sup){
+    $scope.supplier = angular.copy(result_sup.supplier);
+      $http.get('../data/product.json').success(function(result_prod){
+        $scope.product = angular.copy(result_prod.product);
+        $http.get('../../data/purchase_order.json').success(function(result){
+          angular.forEach(result.purchase_order, function(val, key){
+            var prod = $filter('filter')($scope.product, {product_id: val.product_id})[0];
+            var p = $filter('filter')($scope.supplier, {supplier_id:val.supplier_id})[0];
+            var dat = {
+              "supplier_id":p.supplier_id,
+              "po_number": val.po_number,
+              "product_name": prod.name,
+              "supplier_name": p.name,
+              "shipping_address": val.shipping_address,
+              "billing_address": val.billing_address,
+              "shipping_date": val.shipping_date,
+              "status": 'Draft',
+              "created_date": val.created_date
+            };
+            $scope.purchase_orders.push(dat);
+          });
+      });
+    });
+  });
+
+    $scope.AuditTrail = [];
+  	$http.get('../../data/audit_trail.json').success(function(audit_result){
+      $http.get('../../data/user.json').success(function(user_result){
+        angular.forEach(audit_result.audit_trail, function(val, key){
+          var dat = {
+            "id": val.id,
+            "user": $filter('filter')(user_result.user, {user_id:val.user_id})[0].username,
+            "event_type": val.event_type,
+            "description": val.description,
+            "created_date": val.created_date
+          };
+          $scope.AuditTrail.push(dat);
+        });
+      });
+    });
+});
