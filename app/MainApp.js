@@ -56,6 +56,11 @@ app.config(function($routeProvider) {
         controller:'AuditTrailController',
         title:'Audit Trail',
         parent:undefined
+    }).when("/approvaltransaction", {
+        templateUrl:'../views/contents/approval_transaction.html',
+        controller:'ApprovalTransactionController',
+        title:'Approval Transaction',
+        parent:undefined
     });
 
 });
