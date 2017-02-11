@@ -8,86 +8,86 @@
 				<div class="widget-main no-padding">
 					<form name="productForm">
 						<!-- <legend>Form</legend> -->
-						<fieldset>
+						<fieldset class="scm-form">
 							<div class="row">
 								<input type="text" ng-show="test" ng-model="pf.act" />
-								<div class="col-xs-6">
-									<select class="form-control" ng-model="pf.supplier_id" id="form-field-select-3" placeholder="Choose a Supplier...">
-										<option value="" disabled selected>Select Supplier</option>
-										<option ng-repeat="sup in supplier" value="{{sup.supplier_id}}">{{sup.name}}</option>
-									</select>
-								</div>
-								<div class="col-xs-6">
-									<input type="text" id="form-field-1-1" ng-model="pf.name" placeholder="Name" class="form-control" />
-								</div>
+								<select class="form-control" ng-model="pf.supplier_name" id="form-field-select-3" placeholder="Choose a Supplier...">
+									<option value="" disabled selected>Select Supplier</option>
+									<option ng-repeat="sup in supplier" value="{{sup.name}}">{{sup.name}}</option>
+								</select>
 							</div>
 							<div class="space-4"></div>
 							<div class="row">
-								<div class="col-xs-6">
-									<select class="form-control" ng-model="pf.type" id="form-field-select-3" placeholder="Choose a Supplier...">
-										<option value="" disabled selected>Select Type</option>
-										<option value="Makanan">Makanan</option>
-										<option value="Minuman">Minuman</option>
-										<option value="Elektronik">Elektronik</option>
-										<option value="Mainan">Mainan</option>
-										<option value="Kesehatan">Kesehatan</option>
-										<option value="Lainnya">Lainnya</option>
-									</select>
-								</div>
-								<div class="col-xs-6">
-									<textarea class="form-control" style="height: 34px;" id="form-field-8" ng-model="pf.description" placeholder="Description"></textarea>
-								</div>
+								<input type="text" id="form-field-1-1" ng-model="pf.name" placeholder="Name" class="form-control" />
 							</div>
 							<div class="space-4"></div>
 							<div class="row">
-								<div class="col-xs-3">
+								<select class="form-control" ng-model="pf.type" id="form-field-select-3" placeholder="Choose a Supplier...">
+									<option value="" disabled selected>Select Type</option>
+									<option value="Makanan">Makanan</option>
+									<option value="Minuman">Minuman</option>
+									<option value="Elektronik">Elektronik</option>
+									<option value="Mainan">Mainan</option>
+									<option value="Kesehatan">Kesehatan</option>
+									<option value="Lainnya">Lainnya</option>
+								</select>
+							</div>
+							<div class="space-4"></div>
+							<div class="row">
+								<textarea class="form-control" id="form-field-8" ng-model="pf.description" placeholder="Description"></textarea>
+							</div>
+							<div class="space-4"></div>
+							<div class="row">
+								<div class="col-sm-6 pull-left" style="right:12px">
 										<input type="number" id="form-field-1-1" ng-model="pf.price" placeholder="Price" class="form-control" />
 								</div>
-								<div class="col-xs-3">
+								<div class="col-sm-6 pull-right" style="left:12px">
 									<input type="number" id="form-field-1-1" ng-model="pf.cost" placeholder="Cost" class="form-control" />
 								</div>
-								<div class="col-xs-3">
+							</div>
+							<div class="space-4"></div>
+							<div class="row">
+								<div class="col-sm-6 pull-left" style="right:12px">
 									<input type="number" id="form-field-1-1" ng-model="pf.qty" placeholder="Qty" class="form-control" />
 								</div>
-								<div class="col-xs-3">
+								<div class="col-sm-6 pull-right" style="left:12px">
 									<input type="number" id="form-field-1-1" ng-model="pf.stock_min" placeholder="Min Stock" class="form-control" />
 								</div>
 							</div>
 							<div class="space-4"></div>
 							<div class="row">
-								<div class="col-xs-4">
-									<div class="checkbox">
-										<label>
-											<input name="form-field-checkbox" type="checkbox" ng-model="pf.discount_status" class="ace input-lg" />
-											<span class="lbl bigger-120"> discount?</span>
-										</label>
-									</div>
+								<div class="checkbox">
+									<label>
+										<input name="form-field-checkbox" type="checkbox" ng-model="pf.discount_status" class="ace input-lg" />
+										<span class="lbl bigger-120"> discount?</span>
+									</label>
 								</div>
-								<div class="col-xs-4" ng-show="pf.discount_status">
+							</div>
+							<div class="space-4"></div>
+							<div class="row">
+								<div class="col-sm-6 pull-left" style="right:12px" ng-show="pf.discount_status">
 									<input type="number" id="form-field-1-1" ng-model="pf.discount_qty_min" placeholder="Discount Qty" class="form-control" />
 								</div>
-								<div class="col-xs-4" ng-show="pf.discount_status">
+								<div class="col-sm-6 pull-right" style="left:12px" ng-show="pf.discount_status">
 									<input type="number" id="form-field-1-1" ng-model="pf.discount_rate" placeholder="Discount Rate" class="form-control" />
 								</div>
 							</div>
 							<div class="space-4"></div>
 							<div class="row">
-								<div class="col-xs-6">
-									<div class="checkbox">
-										<label>
-											<input name="form-field-checkbox" type="checkbox" ng-model="pf.expired_status" class="ace input-lg" />
-											<span class="lbl bigger-120"> expired?</span>
-										</label>
-									</div>
+								<div class="checkbox">
+									<label>
+										<input name="form-field-checkbox" type="checkbox" ng-model="pf.expired_status" class="ace input-lg" />
+										<span class="lbl bigger-120"> expired?</span>
+									</label>
 								</div>
-								<div class="col-xs-6" ng-show="pf.expired_status">
-									<div class="input-group">
-										<input class="form-control date-picker" id="id-date-picker-1" type="text" ng-model="pf.expired_date" data-date-format="dd/mm/yyyy" />
-										<span class="input-group-addon">
-											<i class="fa fa-calendar bigger-110"></i>
-										</span>
-									</div>
-									<!-- <input type="number" id="form-field-1-1" ng-model="pf.expired_date" placeholder="Discount Qty" class="form-control" /> -->
+							</div>
+							<div class="space-4"></div>
+							<div class="row" ng-show="pf.expired_status">
+								<div class="input-group">
+									<input class="form-control date-picker" id="id-date-picker-1" type="text" ng-model="pf.expired_date" data-date-format="dd/mm/yyyy" />
+									<span class="input-group-addon">
+										<i class="fa fa-calendar bigger-110"></i>
+									</span>
 								</div>
 							</div>
 						</fieldset>
@@ -169,7 +169,7 @@
 				</thead>
 
 				<tbody>
-					<tr ng-repeat="x in filterData = (products | filter:{product_id:filterText, type:filterType}) | limitTo:5:5*(page-1)">
+					<tr ng-repeat="x in filterData = (products | filter:{product_id:filterText, type:filterType}) | limitTo:10:10*(page-1)">
 						<td>{{x.product_id}}</td>
 						<td>{{x.supplier_name}}</td>
 						<td>{{x.name}}</td>
@@ -224,7 +224,7 @@
 			</table>
 			<div class="pull-right">
 				<uib-pagination class="pagination-sm pagination" total-items="products.length" ng-model="page"
-					ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=5></uib-pagination>
+					ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>
 			</div>
 		</div>
 

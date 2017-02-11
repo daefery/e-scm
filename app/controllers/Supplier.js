@@ -58,7 +58,8 @@ app.controller('SupplierController', function($scope, $http) {
           name:data.name,
           description:data.description,
           address:data.address,
-          phone:data.phone
+          phone:data.phone,
+          created_date:"10/10/2016"
         }
         $scope.suppliers.push(param);
         $.gritter.add({

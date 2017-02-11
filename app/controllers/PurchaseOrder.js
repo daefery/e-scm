@@ -117,7 +117,7 @@ app.controller('PurchaseOrderController', function($scope, $http, $filter) {
         var param = {
           po_id:6,
           detail_id:data.detail_id,
-          supplier_id:data.supplier_id,
+          supplier_name:data.supplier_name,
           user_id:data.user_id,
           po_number:data.po_number,
           shipping_address: data.shipping_address,

@@ -23,7 +23,7 @@ app.config(function($routeProvider) {
     }).when("/supplier", {
         templateUrl:'../views/contents/supplier.html',
         controller:'SupplierController',
-        title:'Supplier',
+        title:'Manage Supplier',
         parent:'Inventory'
     }).when("/purchase_order", {
         templateUrl:'../views/contents/purchase_order.html',
@@ -60,6 +60,16 @@ app.config(function($routeProvider) {
         templateUrl:'../views/contents/approval_transaction.html',
         controller:'ApprovalTransactionController',
         title:'Approval Transaction',
+        parent:undefined
+    }).when("/manageuser", {
+        templateUrl:'../views/contents/user.html',
+        controller:'UserController',
+        title:'Manage User',
+        parent:undefined
+    }).when("/monitoring", {
+        templateUrl:'../views/contents/monitoring.html',
+        controller:'MonitoringController',
+        title:'Monitoring',
         parent:undefined
     });
 

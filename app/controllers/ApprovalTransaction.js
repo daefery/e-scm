@@ -58,7 +58,7 @@ app.controller('ApprovalTransactionController', function($scope, $http, $filter)
           text: 'Congratulation, approval given successfully.',
           class_name: 'gritter-success gritter-center'
         });
-        $scope.purchase_orders[data].status = 'Approval';
+        $scope.purchase_orders[data].status = 'Approved';
         $scope.$apply();
       }
     });

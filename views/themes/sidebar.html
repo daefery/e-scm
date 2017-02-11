@@ -45,7 +45,7 @@
 
         <b class="arrow"></b>
       </li>
-      <li ng-class="{'active':title=='Supplier'}">
+      <li ng-class="{'active':title=='Manage Supplier'}">
         <a href="#supplier">
           <i class="menu-icon fa fa-caret-right"></i>
           Supplier
@@ -121,8 +121,8 @@
 
 		<b class="arrow"></b>
 	</li>
-  <li class="">
-		<a href="/main">
+  <li ng-class="{'active':title=='Manage User'}">
+		<a href="#manageuser">
 			<i class="menu-icon fa fa-users"></i>
 			<span class="menu-text"> User </span>
 		</a>
@@ -137,8 +137,8 @@
 
 		<b class="arrow"></b>
 	</li>
-  <li class="">
-    <a href="#product">
+  <li ng-class="{'active':title=='Monitoring'}">
+    <a href="#monitoring">
       <i class="menu-icon fa fa-desktop"></i>
       <span class="menu-text"> Monitoring</span>
     </a>

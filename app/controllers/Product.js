@@ -29,15 +29,13 @@ app.controller('ProductController', function($scope, $http, $filter) {
         $scope.products.push(dat);
       });
       $scope.page = 1;
-      $scope.displayItems = $scope.products.slice(0, 5);
+      $scope.displayItems = $scope.products.slice(0, 10);
 
     });
   });
 
-
-
 	$scope.pageChanged = function() {
-	  var startPos = ($scope.page - 1) * 5;
+	  var startPos = ($scope.page - 1) * 10;
 	};
 
   $scope.actionProduct = function(type, data){
@@ -81,6 +79,7 @@ app.controller('ProductController', function($scope, $http, $filter) {
       case 'create':
         var param = {
           product_id:6234333,
+          supplier_name:data.supplier_name,
           name:data.name,
           type:data.type,
           description:data.description,
