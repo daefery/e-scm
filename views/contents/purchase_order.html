@@ -132,91 +132,94 @@
 				</button>
 			</div>
 		</div>
-		<table id="simple-table" class="table  table-bordered table-hover">
-			<thead>
-				<tr>
-					<th class="center">
-						<label class="pos-rel">
-							<input type="checkbox" class="ace" />
-							<span class="lbl"></span>
-						</label>
-					</th>
-					<th>PO Number</th>
-					<th>Supplier</th>
-					<th>Shipping Address</th>
-          <th>Billing Address</th>
-          <th>Shipping Date</th>
-          <th>Status</th>
-          <th>Created Date</th>
-					<th></th>
-				</tr>
-			</thead>
+		<div class="table-responsive">
+			<table id="simple-table" class="table  table-bordered table-hover">
+				<thead>
+					<tr>
+						<th class="center">
+							<label class="pos-rel">
+								<input type="checkbox" class="ace" />
+								<span class="lbl"></span>
+							</label>
+						</th>
+						<th>PO Number</th>
+						<th>Supplier</th>
+						<th>Shipping Address</th>
+						<th>Billing Address</th>
+						<th>Shipping Date</th>
+						<th>Status</th>
+						<th>Created Date</th>
+						<th></th>
+					</tr>
+				</thead>
 
-			<tbody>
-				<tr ng-repeat="(key, value) in filterData = (purchase_orders | filter:{po_number:filterText, status:filterStatus}) | limitTo:10:10*(page-1)">
-					<td class="center">
-						<label class="pos-rel">
-							<input type="checkbox" class="ace" />
-							<span class="lbl"></span>
-						</label>
-					</td>
-					<td>{{value.po_number}}</td>
-					<td>{{value.supplier_name}}</td>
-          <td>{{value.shipping_address}}</td>
-          <td>{{value.billing_address}}</td>
-          <td>{{value.shipping_date}}</td>
-          <td>
-						<span class="label" ng-class="{'label-danger':value.status=='Rejected', 'label-warning':value.status=='Draft', 'label-success':value.status=='Complete', 'label-default':value.status=='Waiting', 'label-primary':value.status=='Approved'}">{{value.status}}</span>
-					</td>
-          <td>{{value.created_date}}</td>
-					<td>
-						<div class="hidden-sm hidden-xs action-buttons">
-							<a class="blue" href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.detail_id)">
-								<i class="ace-icon fa fa-search-plus bigger-130"></i>
-							</a>
+				<tbody>
+					<tr ng-repeat="(key, value) in filterData = (purchase_orders | filter:{po_number:filterText, status:filterStatus}) | limitTo:10:10*(page-1)">
+						<td class="center">
+							<label class="pos-rel">
+								<input type="checkbox" class="ace" />
+								<span class="lbl"></span>
+							</label>
+						</td>
+						<td>{{value.po_number}}</td>
+						<td>{{value.supplier_name}}</td>
+						<td>{{value.shipping_address}}</td>
+						<td>{{value.billing_address}}</td>
+						<td>{{value.shipping_date}}</td>
+						<td>
+							<span class="label" ng-class="{'label-danger':value.status=='Rejected', 'label-warning':value.status=='Draft', 'label-success':value.status=='Complete', 'label-default':value.status=='Waiting', 'label-primary':value.status=='Approved'}">{{value.status}}</span>
+						</td>
+						<td>{{value.created_date}}</td>
+						<td>
+							<div class="hidden-sm hidden-xs action-buttons">
+								<a class="blue" href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.detail_id)">
+									<i class="ace-icon fa fa-search-plus bigger-130"></i>
+								</a>
 
-							<a class="blue" href="" ng-click="actionPurchaseOrder('edit', value)">
-								<i class="ace-icon fa fa-pencil bigger-130"></i>
-							</a>
+								<a class="blue" href="" ng-click="actionPurchaseOrder('edit', value)">
+									<i class="ace-icon fa fa-pencil bigger-130"></i>
+								</a>
 
-							<a class="red" href="" ng-click="savePurchaseOrder('delete', value)">
-								<i class="ace-icon fa fa-trash-o bigger-130"></i>
-							</a>
+								<a class="red" href="" ng-click="savePurchaseOrder('delete', value)">
+									<i class="ace-icon fa fa-trash-o bigger-130"></i>
+								</a>
 
-							<a ng-if="value.status == 'Draft'" class="green" href="" ng-click="sendRequest($index)">
-								<i class="ace-icon fa fa-paper-plane bigger-130"></i>
-							</a>
-						</div>
-
-						<div class="hidden-md hidden-lg">
-							<div class="inline pos-rel">
-								<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-									<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-								</button>
-
-								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-									<li>
-										<a href="" class="tooltip-info" data-rel="tooltip" title="Edit" ng-click="actionPurchaseOrder('edit', value)">
-											<span class="blue">
-												<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-											</span>
-										</a>
-									</li>
-
-									<li>
-										<a href="" class="tooltip-error" data-rel="tooltip" title="Delete" ng-click="savePurchaseOrder('delete', value)">
-											<span class="red">
-												<i class="ace-icon fa fa-trash-o bigger-120"></i>
-											</span>
-										</a>
-									</li>
-								</ul>
+								<a ng-if="value.status == 'Draft'" class="green" href="" ng-click="sendRequest($index)">
+									<i class="ace-icon fa fa-paper-plane bigger-130"></i>
+								</a>
 							</div>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+
+							<div class="hidden-md hidden-lg">
+								<div class="inline pos-rel">
+									<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+										<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+									</button>
+
+									<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+										<li>
+											<a href="" class="tooltip-info" data-rel="tooltip" title="Edit" ng-click="actionPurchaseOrder('edit', value)">
+												<span class="blue">
+													<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+												</span>
+											</a>
+										</li>
+
+										<li>
+											<a href="" class="tooltip-error" data-rel="tooltip" title="Delete" ng-click="savePurchaseOrder('delete', value)">
+												<span class="red">
+													<i class="ace-icon fa fa-trash-o bigger-120"></i>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 		<div class="pull-right">
 			<uib-pagination class="pagination-sm pagination" total-items="purchase_orders.length" ng-model="page"
 				ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>

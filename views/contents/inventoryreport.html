@@ -26,7 +26,8 @@
 					</button>
 				</div>
 			</div>
-			<table id="simple-table" class="table  table-bordered table-hover">
+			<div class="table-responsive">
+				<table id="simple-table" class="table  table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>Code</th>
@@ -217,6 +218,7 @@
 
 				</tbody>
 			</table>
+			</div>
 			<div class="pull-right">
 				<uib-pagination class="pagination-sm pagination" total-items="stockmngt.length" ng-model="page"
 					ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>
