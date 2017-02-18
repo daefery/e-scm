@@ -1,0 +1,152 @@
+<ul class="nav nav-list" ng-if="credential.type=='inv'">
+  <li ng-class="{'active':title=='Dashboard'}">
+		<a href="/main/#/">
+			<i class="menu-icon fa fa-home"></i>
+			<span class="menu-text"> Dashboard </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li ng-class="{'active':title=='Product'}">
+    <a href="#product">
+      <i class="menu-icon fa fa-shopping-basket"></i>
+      <span class="menu-text"> Product</span>
+    </a>
+
+    <b class="arrow"></b>
+  </li>
+
+  <li class="">
+    <a href="#" class="dropdown-toggle">
+      <i class="menu-icon fa fa-cubes"></i>
+      <span class="menu-text">
+        Inventory
+      </span>
+
+      <b class="arrow fa fa-angle-down"></b>
+    </a>
+
+    <b class="arrow"></b>
+
+    <ul class="submenu">
+      <li ng-class="{'active':title=='Stock Management'}">
+        <a href="#stockmanagement">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Stock Management
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li ng-class="{'active':title=='Purchase Order'}">
+        <a href="#purchase_order">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Purchase Order
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li ng-class="{'active':title=='Manage Supplier'}">
+        <a href="#supplier">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Supplier
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li ng-class="{'active':title=='Report and History'}">
+        <a href="#inventoryreport">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Report & History
+        </a>
+        <b class="arrow"></b>
+      </li>
+    </ul>
+  </li>
+</ul><!-- /.nav-list -->
+<ul class="nav nav-list" ng-if="credential.type=='csr'">
+  <li ng-class="{'active':title=='Dashboard'}">
+		<a href="/main/#/">
+			<i class="menu-icon fa fa-home"></i>
+			<span class="menu-text"> Dashboard </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+ <li class="">
+    <a href="#" class="dropdown-toggle">
+      <i class="menu-icon fa fa-shopping-bag"></i>
+      <span class="menu-text">
+        Transaction
+      </span>
+
+      <b class="arrow fa fa-angle-down"></b>
+    </a>
+
+    <b class="arrow"></b>
+
+    <ul class="submenu">
+      <li ng-class="{'active':title=='New Transaction'}">
+        <a href="#newtransaction">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Create New Transaction
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li ng-class="{'active':title=='Recent Transaction'}">
+        <a href="#recenttransaction">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Recent Transaction
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+    </ul>
+  </li>
+</ul><!-- /.nav-list -->
+<ul class="nav nav-list" ng-if="credential.type=='admin'">
+  <li ng-class="{'active':title=='Dashboard'}">
+		<a href="/main/#/">
+			<i class="menu-icon fa fa-home"></i>
+			<span class="menu-text"> Dashboard </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li ng-class="{'active':title=='Approval Transaction'}">
+		<a href="#approvaltransaction">
+			<i class="menu-icon fa fa-shopping-bag"></i>
+			<span class="menu-text"> Transaction </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li ng-class="{'active':title=='Manage User'}">
+		<a href="#manageuser">
+			<i class="menu-icon fa fa-users"></i>
+			<span class="menu-text"> User </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li ng-class="{'active':title=='Audit Trail'}">
+		<a href="#audittrail">
+			<i class="menu-icon fa fa-industry"></i>
+			<span class="menu-text"> Audit Trail </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+  <li ng-class="{'active':title=='Monitoring'}">
+    <a href="#monitoring">
+      <i class="menu-icon fa fa-desktop"></i>
+      <span class="menu-text"> Monitoring</span>
+    </a>
+
+    <b class="arrow"></b>
+  </li>
+</ul><!-- /.nav-list -->
+
+<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+  <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+</div>

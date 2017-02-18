@@ -1,0 +1,39 @@
+{
+  "audit_trail": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "event_type": "create",
+      "description": "create new product",
+      "created_date": "10/01/2017"
+    },
+    {
+      "id": 2,
+      "user_id": 3,
+      "event_type": "update",
+      "description": "inventory list",
+      "created_date": "12/01/2017"
+    },
+    {
+      "id": 3,
+      "user_id": 2,
+      "event_type": "authentication",
+      "description": "login to application",
+      "created_date": "12/01/2016"
+    },
+    {
+      "id": 4,
+      "user_id": 2,
+      "event_type": "authentication",
+      "description": "log out from application",
+      "created_date": "13/01/2016"
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "event_type": "delete",
+      "description": "remove all product",
+      "created_date": "14/01/2016"
+    }
+  ]
+}

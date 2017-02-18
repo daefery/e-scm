@@ -1,0 +1,142 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="table-responsive">
+			<div class="pull-left tableTools-container">
+				<div class="dt-buttons btn-overlap btn-group">
+					<input type="text" class="form-control" placeholder="Insert Code..." ng-model="ne.code">
+				</div>
+				<div class="dt-buttons btn-overlap btn-group">
+					<input type="number" class="form-control" placeholder="Qty" ng-model="ne.qty">
+				</div>
+				<div class="dt-buttons btn-overlap btn-group">
+					<button ng-disabled="!ne.code || ne.qty < 1" class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-bold" ng-click="addNewEntry(ne)" title="add entry" data-rel="tooltip">
+						<span>
+							<i class="fa fa-plus bigger-110 blue"></i>
+						</span>
+					</button>
+				</div>
+			</div>
+			<div class="pull-right tableTools-container">
+				<div class="dt-buttons btn-overlap btn-group">
+					<button class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-bold" ng-click="clearEntry()" title="clear all" data-rel="tooltip">
+						<span>
+							<i class="fa fa-trash bigger-110 red"></i>
+						</span>
+					</button>
+				</div>
+			</div>
+			<table id="simple-table" class="table table-hover">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Code</th>
+						<th>Name</th>
+						<th class="center">Qty</th>
+						<th class="center">Price</th>
+						<th class="center">Disc. Status</th>
+						<th class="center">Disc. Min</th>
+						<th class="center">Disc. Rate</th>
+						<th>Expired Date</th>
+						<th class="center">Total</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="x in newentry">
+						<td>{{$index + 1}}</td>
+						<td>{{x.product_id}}</td>
+						<td>{{x.name}}</td>
+						<td>{{x.qty}}</td>
+						<td class="center">{{x.price | currency:"":0}}</td>
+						<td class="center">
+							<i ng-if="x.discount_status" class="ace-icon fa fa-check green bigger-130"></i>
+							<i ng-if="!x.discount_status" class="ace-icon fa fa-remove red bigger-130"></i>
+						</td>
+						<td class="center">{{x.discount_min}}</td>
+						<td class="center">{{x.discount_rate}}%</td>
+						<td>{{x.expired_date}}</td>
+						<td class="center">{{x.total | currency:"":0}}</td>
+						<td>
+							<div class="hidden-sm hidden-xs action-buttons">
+								<!-- <a class="blue" href="" ng-click="actionProduct('edit', $index)">
+									<i class="ace-icon fa fa-pencil bigger-130"></i>
+								</a> -->
+
+								<a class="red" href="" ng-click="actionProduct('delete', $index)">
+									<i class="ace-icon fa fa-trash-o bigger-130"></i>
+								</a>
+							</div>
+
+							<div class="hidden-md hidden-lg">
+								<div class="inline pos-rel">
+									<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+										<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+									</button>
+
+									<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+										<!-- <li>
+											<a href="" class="tooltip-info" data-rel="tooltip" title="Edit" ng-click="actionProduct('edit', x)">
+												<span class="blue">
+													<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+												</span>
+											</a>
+										</li> -->
+
+										<li>
+											<a href="" class="tooltip-error" data-rel="tooltip" title="Delete" ng-click="actionProduct('delete', $index)">
+												<span class="red">
+													<i class="ace-icon fa fa-trash-o bigger-120"></i>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="pull-right" ng-hide="newentry.length == 0">
+				<div class="hr hr8 hr-double hr-dotted"></div>
+					<div class="row">
+						<div class="col-sm-6 pull-right">
+							<h4 class="pull-right">
+								Total Before Discount :
+								<s ng-if="totalDiscount != 0" class="red">{{totalBeforeDsc | currency:"":0}}</s>
+								<span ng-if="totalDiscount == 0" class="red">{{totalBeforeDsc | currency:"":0}}</span>
+							</h4>
+						</div>
+						<div class="col-sm-6 pull-right">
+							<h4 class="pull-right">
+								Total Discount :
+								<span class="red">{{totalDiscount | currency:"":0}}</span>
+							</h4>
+						</div>
+						<div class="col-sm-12 pull-right">
+							<h4 class="pull-right">
+								Total amount :
+								<span class="red">{{totalAmount | currency:"":0}}</span>
+							</h4>
+						</div>
+					</div>
+
+					<div class="space-6"></div>
+					<div class="hr hr8 hr-double hr-dotted"></div>
+					<div class="pull-right">
+						<button class="btn btn-app btn-success btn-xs" ng-click="onSave()">
+							<i class="ace-icon fa fa-save bigger-110"></i>
+							Save
+						</button>
+						<button class="btn btn-app btn-primary btn-xs" ng-click="onPrint()">
+							<i class="ace-icon fa fa-print bigger-110"></i>
+							Print
+						</button>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$('[data-rel=tooltip]').tooltip();
+</script>

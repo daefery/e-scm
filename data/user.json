@@ -1,0 +1,28 @@
+{
+  "user": [
+    {
+      "user_id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "type": "admin",
+      "created_date": "10/10/2016",
+      "last_update_date": "10/10/2016"
+    },
+    {
+      "user_id": 2,
+      "username": "chasier",
+      "password": "csr123",
+      "type": "csr",
+      "created_date": "10/10/2016",
+      "last_update_date": "10/10/2016"
+    },
+    {
+      "user_id": 3,
+      "username": "inventory",
+      "password": "inv123",
+      "type": "inv",
+      "created_date": "10/10/2016",
+      "last_update_date": "10/10/2016"
+    }
+  ]
+}

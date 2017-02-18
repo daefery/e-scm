@@ -1,0 +1,46 @@
+{
+  "transaction": [
+    {
+      "transaction_id": 1,
+      "transaction_detail_id": 1,
+      "category":"selling",
+      "total": 118000.0,
+      "transaction_date": "15/12/2016"
+    },
+    {
+      "transaction_id": 2,
+      "transaction_detail_id": 2,
+      "category":"selling",
+      "total": 7000.0,
+      "transaction_date": "17/12/2016"
+    },
+    {
+      "transaction_id": 3,
+      "transaction_detail_id": 3,
+      "category":"selling",
+      "total": 66000.0,
+      "transaction_date": "18/12/2016"
+    },
+    {
+      "transaction_id": 4,
+      "transaction_detail_id": 4,
+      "category":"restock",
+      "total": 30000.0,
+      "transaction_date": "20/12/2016"
+    },
+    {
+      "transaction_id": 5,
+      "transaction_detail_id": 5,
+      "category":"restock",
+      "total": 18500.0,
+      "transaction_date": "20/12/2016"
+    },
+    {
+      "transaction_id": 6,
+      "transaction_detail_id": 6,
+      "category":"selling",
+      "total": 18500.0,
+      "transaction_date": "12/01/2017"
+    }
+  ]
+}
