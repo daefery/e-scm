@@ -1,7 +1,17 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="table-responsive">
-			<div class="pull-left tableTools-container">
+			<div class="radio">
+				<label>
+					<input type="radio" ng-model="trx.option" value="0" class="ace input-lg" ng-checked="checked" />
+					<span class="lbl bigger-120"> Auto</span>
+				</label>
+				<label>
+					<input type="radio" ng-model="trx.option" value="1" class="ace input-lg" />
+					<span class="lbl bigger-120"> Manual</span>
+				</label>
+			</div>
+			<div class="pull-left tableTools-container" ng-show="trx.option == 1">
 				<div class="dt-buttons btn-overlap btn-group">
 					<input type="text" class="form-control" placeholder="Insert Code..." ng-model="ne.code">
 				</div>
@@ -9,9 +19,18 @@
 					<input type="number" class="form-control" placeholder="Qty" ng-model="ne.qty">
 				</div>
 				<div class="dt-buttons btn-overlap btn-group">
-					<button ng-disabled="!ne.code || ne.qty < 1" class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-bold" ng-click="addNewEntry(ne)" title="add entry" data-rel="tooltip">
+					<button ng-disabled="!ne.code || ne.qty < 1" class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-bold" ng-click="addNewEntry('manual', ne)" title="add entry" data-rel="tooltip">
 						<span>
 							<i class="fa fa-plus bigger-110 blue"></i>
+						</span>
+					</button>
+				</div>
+			</div>
+			<div class="pull-left tableTools-container" ng-show="trx.option == 0">
+				<div class="dt-buttons btn-overlap btn-group">
+					<button class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-bold btn-lg" ng-click="addNewEntry('auto',ne)" title="scan barcode" data-rel="tooltip">
+						<span>
+							<i class="fa fa-barcode bigger-110 blue"></i>
 						</span>
 					</button>
 				</div>

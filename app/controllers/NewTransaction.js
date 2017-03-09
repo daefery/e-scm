@@ -5,11 +5,26 @@ app.controller('NewTransactionController', function($scope, $http, $filter) {
 	$scope.totalDiscount = 0;
 	$scope.ne = {};
 	$scope.ne.qty = 1;
+	$scope.checked =true;
+	$scope.trx = {};
+	$scope.trx.option = 0;
 
-	$scope.addNewEntry = function(data){
+	$scope.getRandomInt = function(min, max) {
+    	return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	$scope.addNewEntry = function(type, data){
+
 		$http.get('../../data/product.json').success(function(result){
-			var prod = $filter('filter')(result.product, {product_id:data.code})[0];
+			var prod = {};
 			var total = 0;
+
+			if(type == 'auto'){
+				var i = $scope.getRandomInt(0, result.product.length-1);
+				prod = result.product[i];
+			}else{
+				prod = $filter('filter')(result.product, {product_id:data.code})[0];
+			}
+
 			if(prod.discount_status && data.qty >= prod.discount_qty_min){
 				var potongan = (prod.discount_rate/100)*(data.qty * prod.price);
 				total = (data.qty * prod.price) - potongan;

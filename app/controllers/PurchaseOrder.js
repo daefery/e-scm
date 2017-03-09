@@ -172,4 +172,18 @@ app.controller('PurchaseOrderController', function($scope, $http, $filter) {
       }
     });
   }
+
+  $scope.setComplete = function(data){
+    bootbox.confirm("Are you sure?", function(result) {
+      if(result) {
+        $.gritter.add({
+          title: 'Success Message',
+          text: 'Congratulation, transaction is completed.',
+          class_name: 'gritter-success gritter-center'
+        });
+        $scope.purchase_orders[data].status = 'Complete';
+        $scope.$apply();
+      }
+    });
+  }
 });

@@ -173,7 +173,7 @@
 						<td>
 							<div class="hidden-sm hidden-xs action-buttons">
 								<a class="blue" href=".modal-table" data-toggle="modal" ng-click="viewDetail(x.detail_id)">
-									<i class="ace-icon fa fa-search-plus bigger-130"></i>
+									<i class="ace-icon fa fa-search bigger-130"></i>
 								</a>
 
 								<a class="blue" href="" ng-click="actionPurchaseOrder('edit', value)">
@@ -186,6 +186,10 @@
 
 								<a ng-if="value.status == 'Draft'" class="green" href="" ng-click="sendRequest($index)">
 									<i class="ace-icon fa fa-paper-plane bigger-130"></i>
+								</a>
+
+								<a ng-if="value.status == 'Approved'" class="green" href="" ng-click="setComplete($index)">
+									<i class="ace-icon fa fa-check-square-o bigger-130"></i>
 								</a>
 							</div>
 
