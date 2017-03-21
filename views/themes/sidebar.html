@@ -7,13 +7,36 @@
 
 		<b class="arrow"></b>
 	</li>
-  <li ng-class="{'active':title=='Product'}">
-    <a href="#product">
+  <li class="">
+    <a href="#" class="dropdown-toggle">
       <i class="menu-icon fa fa-shopping-basket"></i>
-      <span class="menu-text"> Product</span>
+      <span class="menu-text">
+        Product
+      </span>
+
+      <b class="arrow fa fa-angle-down"></b>
     </a>
 
     <b class="arrow"></b>
+
+    <ul class="submenu">
+      <li ng-class="{'active':title=='New Product'}">
+        <a href="#product">
+          <i class="menu-icon fa fa-caret-right"></i>
+          New Product
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li ng-class="{'active':title=='Restock Product'}">
+        <a href="#restockproduct">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Restock Product
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+    </ul>
   </li>
 
   <li class="">
@@ -97,6 +120,14 @@
         <a href="#recenttransaction">
           <i class="menu-icon fa fa-caret-right"></i>
           Recent Transaction
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+      <li ng-class="{'active':title=='Product Retur'}">
+        <a href="#productretur">
+          <i class="menu-icon fa fa-caret-right"></i>
+          Product Retur
         </a>
 
         <b class="arrow"></b>

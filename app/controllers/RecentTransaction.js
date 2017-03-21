@@ -1,7 +1,26 @@
 app.controller('RecentTransactionController', function($scope, $http, $filter){
   $scope.rectrans = {};
+  $scope.productretur = [];
   $http.get('../../data/transaction.json').success(function(trans_result){
     $scope.rectrans = trans_result.transaction;
+    $http.get('../../data/transaction_detail.json').success(function(dtl_result){
+        $http.get('../../data/product.json').success(function(prod_result){
+          // angular.forEach(trans_result.transaction, function(v, k){
+            var detail = $filter('filter')(dtl_result.transaction_detail, {transaction_detail_id:1})[0].items;
+            angular.forEach(detail, function(val, key){
+              var prod = $filter('filter')(prod_result.product, {product_id:val.product_id})[0];
+              var dat = {
+                product:prod,
+                qty:1
+              }
+              $scope.productretur.push(dat);
+              // $scope.totalAmount = $scope.totalAmount + total;
+              // $scope.totalBeforeDsc = $scope.totalBeforeDsc + (val.qty * prod.price);
+            });
+          // });
+
+      });
+    });
   });
 
   $scope.viewDetail = function(id){
@@ -45,6 +64,7 @@ app.controller('RecentTransactionController', function($scope, $http, $filter){
   					class_name: 'gritter-success gritter-center'
   				});
           $scope.rectrans = undefined;
+          $scope.productretur = undefined;
           $scope.$apply();
   		}
   	});

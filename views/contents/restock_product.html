@@ -38,39 +38,12 @@
 							</div>
 							<div class="space-4"></div>
 							<div class="row">
-								<div class="col-sm-6 pull-left" style="right:12px">
-										<input type="number" id="form-field-1-1" ng-model="pf.price" placeholder="Price" class="form-control" />
-								</div>
 								<div class="col-sm-6 pull-right" style="left:12px">
 									<input type="number" id="form-field-1-1" ng-model="pf.cost" placeholder="Cost" class="form-control" />
 								</div>
-							</div>
-							<div class="space-4"></div>
-							<div class="row">
-								<div class="col-sm-6 pull-left" style="right:12px">
-									<input type="number" id="form-field-1-1" ng-model="pf.qty" placeholder="Qty" class="form-control" />
-								</div>
-								<div class="col-sm-6 pull-right" style="left:12px">
-									<input type="number" id="form-field-1-1" ng-model="pf.stock_min" placeholder="Min Stock" class="form-control" />
-								</div>
-							</div>
-							<div class="space-4"></div>
-							<div class="row">
-								<div class="checkbox">
-									<label>
-										<input name="form-field-checkbox" type="checkbox" ng-model="pf.discount_status" class="ace input-lg" />
-										<span class="lbl bigger-120"> discount?</span>
-									</label>
-								</div>
-							</div>
-							<div class="space-4"></div>
-							<div class="row">
-								<div class="col-sm-6 pull-left" style="right:12px" ng-show="pf.discount_status">
-									<input type="number" id="form-field-1-1" ng-model="pf.discount_qty_min" placeholder="Discount Qty" class="form-control" />
-								</div>
-								<div class="col-sm-6 pull-right" style="left:12px" ng-show="pf.discount_status">
-									<input type="number" id="form-field-1-1" ng-model="pf.discount_rate" placeholder="Discount Rate" class="form-control" />
-								</div>
+                <div class="col-sm-6 pull-left" style="right:12px">
+                  <input type="number" id="form-field-1-1" ng-model="pf.qty" placeholder="Qty" class="form-control" />
+                </div>
 							</div>
 							<div class="space-4"></div>
 							<div class="row">
@@ -157,12 +130,10 @@
 						<th>Name</th>
 						<th>Type</th>
 						<th>Description</th>
-						<th>Price</th>
 						<th>Cost</th>
-						<th>Min Stock</th>
-						<th>Disc. Qty</th>
-						<th>Disc. Rate(%)</th>
-						<th>Create Date</th>
+						<th>Qty</th>
+            <th>Expired Date</th>
+						<th>Restock Date</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -174,11 +145,9 @@
 						<td>{{x.name}}</td>
 						<td>{{x.type}}</td>
 						<td>{{x.description}}</td>
-						<td class="center">{{x.price | currency:"":0}}</td>
 						<td class="center">{{x.cost | currency:"":0}}</td>
-						<td class="center">{{x.stock_min}}</td>
-						<td class="center">{{x.discount_qty_min}}</td>
-						<td class="center">{{x.discount_rate}}</td>
+						<td class="center">100</td>
+            <td>{{x.created_date}}</td>
 						<td>{{x.created_date}}</td>
 						<td>
 							<div class="hidden-sm hidden-xs action-buttons">

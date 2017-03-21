@@ -13,9 +13,14 @@ app.config(function($routeProvider) {
   $routeProvider.when("/product", {
         templateUrl:'../views/contents/product.html',
         controller:'ProductController',
-        title:'Product',
-        parent:undefined
-    }).when("/stockmanagement", {
+        title:'New Product',
+        parent:'Product'
+    }).when("/restockproduct", {
+          templateUrl:'../views/contents/restock_product.html',
+          controller:'ProductController',
+          title:'Restock Product',
+          parent:'Product'
+      }).when("/stockmanagement", {
         templateUrl:'../views/contents/stockmanagement.html',
         controller:'StockManagementController',
         title:'Stock Management',
@@ -47,6 +52,11 @@ app.config(function($routeProvider) {
         templateUrl:'../views/contents/recent_transaction.html',
         controller:'RecentTransactionController',
         title:'Recent Transaction',
+        parent:'Transaction'
+    }).when("/productretur", {
+        templateUrl:'../views/contents/retur_product.html',
+        controller:'ProductReturController',
+        title:'Product Retur',
         parent:'Transaction'
     });
 

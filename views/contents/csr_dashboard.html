@@ -4,7 +4,7 @@
 			<i class="ace-icon fa fa-times"></i>
 		</button>
 		<p>
-			There are some update of product information, please click <a href=".modal-table" data-toggle="modal" ng-click="viewProduct()">here</a> to view product list and detail
+			There are some update of product information, please click <a href=".modal-table" id="btn_notif" data-toggle="modal" ng-click="viewProduct()">here</a> to view product list and detail
 		</p>
 	</div>
 	<div class="col-sm-6">
@@ -147,8 +147,17 @@
 						<i class="ace-icon fa fa-times"></i>
 						Close
 					</button>
+					<button class="btn btn-sm btn-success pull-left" data-dismiss="modal">
+						<i class="ace-icon fa fa-check"></i>
+						Done
+					</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div>
 </div>
+<script>
+setTimeout(function(){
+	$('#btn_notif').trigger('click');
+}, 1000);
+</script>

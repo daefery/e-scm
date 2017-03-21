@@ -65,6 +65,44 @@
 				<uib-pagination class="pagination-sm pagination" total-items="stockmngt.length" ng-model="page"
 					ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=10></uib-pagination>
 			</div>
+			<div class="table-responsive">
+				<table id="simple-table" class="table  table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Name</th>
+						<th class="center">Qty</th>
+						<th class="center">Price</th>
+						<th class="center">Disc. Status</th>
+						<th class="center">Disc. Min</th>
+						<th class="center">Disc. Rate</th>
+						<th>Expired Date</th>
+						<th class="center">Status</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="tr in productretur">
+						<td>{{tr.product.product_id}}</td>
+						<td>{{tr.product.name}}</td>
+						<td class="center">{{tr.qty}}</td>
+						<td class="center">{{tr.product.price | currency:"":0}}</td>
+						<td class="center">
+							<i ng-if="tr.product.discount_status" class="ace-icon fa fa-check green bigger-130"></i>
+							<i ng-if="!tr.product.discount_status" class="ace-icon fa fa-remove red bigger-130"></i>
+						</td>
+						<td class="center">{{tr.product.discount_qty_min}}</td>
+						<td class="center">{{tr.product.discount_rate}}%</td>
+						<td>{{tr.product.expired_date}}</td>
+						<td><span class="label label-danger">Retur</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			<div class="pull-right">
+				<uib-pagination class="pagination-sm pagination" total-items="productretur.length" ng-model="page"
+					ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=5></uib-pagination>
+			</div>
 		</div>
 
 	</div><!-- /.span -->
